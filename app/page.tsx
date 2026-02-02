@@ -64,12 +64,10 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="/login">
-                <Link href="/auth/login" className="hidden sm:inline-flex">
-                  Login
-                </Link>
+              <Link href="/auth/login" className="hidden sm:inline-flex">
+                Login
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button className="shadow-lg shadow-primary/20">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />

@@ -10,9 +10,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <AppCookiesProvider>
             <I18nProvider>
                 <AuthProvider>
-
                     {children}
-
                 </AuthProvider>
                 <Toaster />
             </I18nProvider>

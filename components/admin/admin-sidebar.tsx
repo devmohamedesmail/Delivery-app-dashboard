@@ -1,6 +1,4 @@
 'use client'
-
-import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -11,11 +9,11 @@ import {
     ShoppingCart,
     BarChart3,
     FileText,
-    ChevronLeft,
     Store,
     MapPin
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useTranslation } from 'react-i18next'
 
 interface AdminSidebarProps {
     isCollapsed: boolean
@@ -23,56 +21,26 @@ interface AdminSidebarProps {
     onClose?: () => void
 }
 
-const navigationItems = [
+
+
+export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSidebarProps) {
+    const pathname = usePathname()
+    const {t} =useTranslation();
+
+
+    const navigationItems = [
     {
         title: 'Dashboard',
         href: '/admin',
         icon: LayoutDashboard
     },
+    
     {
-        title: 'Orders',
-        href: '/admin/orders',
-        icon: ShoppingCart
-    },
-    {
-        title: 'Products',
-        href: '/admin/products',
-        icon: Package
-    },
-    {
-        title: 'Stores',
-        href: '/admin/stores',
-        icon: Store
-    },
-    {
-        title: 'Customers',
-        href: '/admin/customers',
-        icon: Users
-    },
-    {
-        title: 'Places',
-        href: '/admin/places',
-        icon: MapPin
-    },
-    {
-        title: 'Analytics',
-        href: '/admin/analytics',
-        icon: BarChart3
-    },
-    {
-        title: 'Reports',
-        href: '/admin/reports',
-        icon: FileText
-    },
-    {
-        title: 'Settings',
+        title: t('sidebar.settings'),
         href: '/admin/settings',
         icon: Settings
     }
 ]
-
-export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSidebarProps) {
-    const pathname = usePathname()
 
     return (
         <>

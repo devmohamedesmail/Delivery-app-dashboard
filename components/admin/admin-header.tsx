@@ -3,6 +3,7 @@
 import React from 'react'
 import { Menu, Bell, Search, Moon, Sun, User, LogOut, Settings } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import ToggleLang from '../ui/toggle-lang'
 
 interface AdminHeaderProps {
     onMenuClick: () => void
@@ -53,6 +54,10 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
 
             {/* Right Section */}
             <div className="flex items-center gap-2">
+
+               <ToggleLang />
+
+
                 {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}

@@ -530,5 +530,58 @@
       "priceMin": "Price must be greater than or equal to 0",
       "placeRequired": "Place is required"
     }
+  },
+  "home": {
+    "appName": "DeliveryApp",
+    "nav": {
+      "login": "Login",
+      "getStarted": "Get Started"
+    },
+    "hero": {
+      "badge": "Fast & Reliable Delivery Service",
+      "title": "Deliver Anything,",
+      "titleHighlight": "Anywhere",
+      "description": "Experience the fastest and most reliable delivery service in your city. Track your packages in real-time and get them delivered right to your doorstep.",
+      "createAccount": "Create Account",
+      "signIn": "Sign In",
+      "trustedBy": "Trusted by 50,000+ users"
+    },
+    "stats": {
+      "customers": "Happy Customers",
+      "deliveries": "Deliveries Made",
+      "stores": "Partner Stores",
+      "rating": "Average Rating"
+    },
+    "features": {
+      "fastDelivery": {
+        "title": "Fast Delivery",
+        "description": "Get your orders delivered in record time with our efficient delivery network"
+      },
+      "secure": {
+        "title": "Secure & Safe",
+        "description": "Your packages are insured and tracked every step of the way"
+      },
+      "tracking": {
+        "title": "Real-time Tracking",
+        "description": "Track your delivery in real-time with our advanced GPS system"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Our customer support team is always ready to help you"
+      }
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Us?",
+      "description": "We provide the best delivery experience with cutting-edge technology"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of satisfied customers and experience the best delivery service",
+      "createAccount": "Create Free Account",
+      "signIn": "Sign In to Dashboard"
+    },
+    "footer": {
+      "copyright": "© 2026 DeliveryApp. All rights reserved."
+    }
   }
 }

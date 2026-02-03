@@ -34,7 +34,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
 
     const navigationItems = [
         {
-            title: 'Dashboard',
+            title: t('sidebar.dashboard'),
             href: '/admin',
             icon: LayoutDashboard
         },
@@ -43,6 +43,16 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             title: t('sidebar.settings'),
             href: '/admin/settings',
             icon: Settings
+        },
+        {
+            title: t('sidebar.areas'),
+            href: '/admin/areas',
+            icon: MapPin
+        },
+        {
+            title: t('sidebar.places'),
+            href: '/admin/places',
+            icon: MapPin
         }
     ]
 

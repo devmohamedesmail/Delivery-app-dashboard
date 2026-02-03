@@ -8,6 +8,7 @@ import ToggleTheme from '../ui/toggle-theme'
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 interface AdminHeaderProps {
     onMenuClick: () => void
@@ -20,6 +21,15 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
     const {user , logout}=useAuth();
     const {t}=useTranslation();
     const router = useRouter();
+
+    const handle_logout = async () => {
+        await logout();
+        setShowUserMenu(false);
+        toast.success(t('auth.logout_success'));
+        setTimeout(() => {
+            router.push('/auth/login');
+        }, 1000);
+    }
 
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 lg:px-6">
@@ -106,7 +116,7 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
                                     </button>
                                 </div>
                                 <div className="border-t border-border p-2">
-                                    <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors">
+                                    <button onClick={()=>handle_logout()} className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors">
                                         <LogOut className="h-4 w-4" />
                                         <span>{t('auth.logout')}</span>
                                     </button>

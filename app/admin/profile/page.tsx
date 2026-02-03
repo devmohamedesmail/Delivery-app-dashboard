@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { User, Mail, Phone, Camera, Loader2, Edit, X } from 'lucide-react'
+import Loading from '@/components/ui/loading'
 
 interface UserProfile {
     id: number
@@ -130,12 +131,7 @@ export default function ProfilePage() {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="text-center">
-                    <Loader2 className="w-12 h-12 animate-spin mx-auto text-primary mb-4" />
-                    <p className="text-slate-600 dark:text-slate-400">{t('common.loading')}</p>
-                </div>
-            </div>
+            <Loading />
         )
     }
 

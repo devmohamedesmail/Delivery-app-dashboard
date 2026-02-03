@@ -1,9 +1,13 @@
 'use client'
 
 import React from 'react'
-import { Menu, Bell, Search, Moon, Sun, User, LogOut, Settings } from 'lucide-react'
+import { Menu, Bell, Search, User, LogOut, Settings } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import ToggleLang from '../ui/toggle-lang'
+import ToggleTheme from '../ui/toggle-theme'
+import { useAuth } from '@/hooks/useAuth'
+import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/navigation'
 
 interface AdminHeaderProps {
     onMenuClick: () => void
@@ -12,13 +16,10 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: AdminHeaderProps) {
-    const [isDark, setIsDark] = React.useState(false)
     const [showUserMenu, setShowUserMenu] = React.useState(false)
-
-    const toggleTheme = () => {
-        setIsDark(!isDark)
-        document.documentElement.classList.toggle('dark')
-    }
+    const {user , logout}=useAuth();
+    const {t}=useTranslation();
+    const router = useRouter();
 
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 lg:px-6">
@@ -56,20 +57,7 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
             <div className="flex items-center gap-2">
 
                <ToggleLang />
-
-
-                {/* Theme Toggle */}
-                <button
-                    onClick={toggleTheme}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-accent transition-colors"
-                    aria-label="Toggle theme"
-                >
-                    {isDark ? (
-                        <Sun className="h-5 w-5 text-muted-foreground" />
-                    ) : (
-                        <Moon className="h-5 w-5 text-muted-foreground" />
-                    )}
-                </button>
+               <ToggleTheme />
 
                 {/* Notifications */}
                 <button
@@ -88,9 +76,9 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
                         aria-label="User menu"
                     >
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/70 text-primary-foreground text-sm font-semibold">
-                            A
+                           {user?.name?.charAt(0)}
                         </div>
-                        <span className="hidden md:block text-sm font-medium">Admin</span>
+                        <span className="hidden md:block text-sm font-medium">{user?.name}</span>
                     </button>
 
                     {/* Dropdown Menu */}
@@ -102,23 +90,25 @@ export function AdminHeader({ onMenuClick, isCollapsed, onToggleCollapse }: Admi
                             />
                             <div className="absolute right-0 top-12 z-50 w-56 rounded-lg border border-border bg-popover shadow-lg animate-in fade-in slide-in-from-top-2">
                                 <div className="p-3 border-b border-border">
-                                    <p className="text-sm font-medium">Admin User</p>
-                                    <p className="text-xs text-muted-foreground">admin@delivery.com</p>
+                                    <p className="text-sm font-medium">{user?.name}</p>
+                                    <p className="text-xs text-muted-foreground">{user?.email}</p>
                                 </div>
                                 <div className="p-2">
-                                    <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-accent transition-colors">
+                                    <button
+                                    onClick={()=>router.push('/admin/profile')}
+                                    className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-accent transition-colors">
                                         <User className="h-4 w-4" />
-                                        <span>Profile</span>
+                                        <span>{t('auth.profile')}</span>
                                     </button>
                                     <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-accent transition-colors">
                                         <Settings className="h-4 w-4" />
-                                        <span>Settings</span>
+                                        <span>{t('common.settings')}</span>
                                     </button>
                                 </div>
                                 <div className="border-t border-border p-2">
                                     <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors">
                                         <LogOut className="h-4 w-4" />
-                                        <span>Logout</span>
+                                        <span>{t('auth.logout')}</span>
                                     </button>
                                 </div>
                             </div>

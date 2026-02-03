@@ -256,7 +256,8 @@
     "or": "Or",
     "login_by_email": "Login by email",
     "login_by_phone": "Login by phone",
-    "profile": "Profile"
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "settings": {
     "title": "Application Settings",
@@ -366,6 +367,28 @@
       "maintenanceMessageRequired": "Maintenance message is required when maintenance mode is enabled",
       "emailInvalid": "Please enter a valid email address",
       "urlInvalid": "Please enter a valid URL"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "View and manage your personal information",
+    "personalInfo": "Personal Information",
+    "personalInfoDesc": "Update your profile details and avatar",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "role": "Role",
+    "saveChanges": "Save Changes",
+    "updateSuccess": "Profile updated successfully",
+    "errorSaving": "Failed to update profile",
+    "errorLoading": "Failed to load profile",
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Please enter a valid email address"
     }
   },
   "stores": {
@@ -506,41 +529,6 @@
       "priceRequired": "Price is required",
       "priceMin": "Price must be greater than or equal to 0",
       "placeRequired": "Place is required"
-    }
-  },
-  "profile": {
-    "title": "My Profile",
-    "subtitle": "Manage your account information",
-    "viewMode": "View Profile",
-    "editMode": "Edit Profile",
-    "personalInfo": "Personal Information",
-    "accountInfo": "Account Information",
-    "name": "Name",
-    "email": "Email Address",
-    "phone": "Phone Number",
-    "role": "Role",
-    "avatar": "Profile Picture",
-    "changeAvatar": "Change Avatar",
-    "uploadAvatar": "Upload New Avatar",
-    "removeAvatar": "Remove Avatar",
-    "edit": "Edit Profile",
-    "save": "Save Changes",
-    "cancel": "Cancel",
-    "saving": "Saving...",
-    "updateSuccess": "Profile updated successfully",
-    "updateError": "Failed to update profile",
-    "loadingProfile": "Loading profile...",
-    "errorLoadingProfile": "Error loading profile",
-    "namePlaceholder": "Enter your name",
-    "emailPlaceholder": "Enter your email",
-    "phonePlaceholder": "Enter your phone number",
-    "validation": {
-      "nameRequired": "Name is required",
-      "nameMin": "Name must be at least 2 characters",
-      "emailRequired": "Email is required",
-      "emailInvalid": "Please enter a valid email address",
-      "phoneRequired": "Phone is required",
-      "phoneInvalid": "Please enter a valid phone number"
     }
   }
 }

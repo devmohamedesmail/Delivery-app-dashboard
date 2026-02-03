@@ -14,6 +14,8 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from 'react-i18next'
+import { useSetting } from '@/hooks/useSetting'
+import Image from 'next/image'
 
 interface AdminSidebarProps {
     isCollapsed: boolean
@@ -25,22 +27,24 @@ interface AdminSidebarProps {
 
 export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSidebarProps) {
     const pathname = usePathname()
-    const {t} =useTranslation();
+    const { t } = useTranslation();
+    const {settings} = useSetting();
+    
 
 
     const navigationItems = [
-    {
-        title: 'Dashboard',
-        href: '/admin',
-        icon: LayoutDashboard
-    },
-    
-    {
-        title: t('sidebar.settings'),
-        href: '/admin/settings',
-        icon: Settings
-    }
-]
+        {
+            title: 'Dashboard',
+            href: '/admin',
+            icon: LayoutDashboard
+        },
+
+        {
+            title: t('sidebar.settings'),
+            href: '/admin/settings',
+            icon: Settings
+        }
+    ]
 
     return (
         <>
@@ -65,12 +69,14 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                 <div className="flex h-16 items-center justify-between border-b border-border px-6">
                     <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/70">
-                            <Store className="h-6 w-6 text-primary-foreground" />
+                            {settings?.logo && (
+                                <img src={settings?.logo} alt="Logo" width={40} height={40} />
+                            )}
                         </div>
                         {!isCollapsed && (
                             <div className="flex flex-col">
-                                <span className="text-lg font-bold text-foreground">Delivery</span>
-                                <span className="text-xs text-muted-foreground">Admin Panel</span>
+                                <span className="text-lg font-bold text-foreground">{settings?.name_en}</span>
+                                <span className="text-xs text-muted-foreground">{settings?.name_ar}</span>
                             </div>
                         )}
                     </div>

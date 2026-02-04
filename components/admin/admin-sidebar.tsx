@@ -53,6 +53,11 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             title: t('sidebar.places'),
             href: '/admin/places',
             icon: MapPin
+        },
+        {
+            title: t('sidebar.users'),
+            href: '/admin/users',
+            icon: Users
         }
     ]
 

@@ -66,19 +66,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <Card className="w-full max-w-md relative shadow-2xl border-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
         <CardHeader className="space-y-1 text-center pb-4">
-          <div className="mx-auto w-16 h-16 bg-linear-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+          <div className="mx-auto w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-4 shadow-lg">
             <Lock className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-3xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <CardTitle className="text-3xl font-bold text-primary">
             {t('auth.login_title')}
           </CardTitle>
           <CardDescription className="text-base">
@@ -121,7 +121,7 @@ export default function LoginPage() {
                       value={formik.values.email}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                      className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary transition-all"
                     />
                   </div>
                   {formik.touched.email && formik.errors.email && (
@@ -148,7 +148,7 @@ export default function LoginPage() {
                       value={formik.values.phone}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                      className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary transition-all"
                     />
                   </div>
                   {formik.touched.phone && formik.errors.phone && (
@@ -174,7 +174,7 @@ export default function LoginPage() {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="pl-10 h-11 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary transition-all"
                   />
                 </div>
                 {formik.touched.password && formik.errors.password && (
@@ -201,7 +201,7 @@ export default function LoginPage() {
                 </div>
                 <button
                   type="button"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                  className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   {t('auth.forgot_password')}
                 </button>
@@ -210,7 +210,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className="w-full h-11 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 group"
+                className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 group"
               >
                 {formik.isSubmitting ? (
                   <>
@@ -230,7 +230,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-slate-600 dark:text-slate-400">
               {t('auth.no_account')}{' '}
-              <button className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+              <button className="font-semibold text-primary hover:text-primary/80 transition-colors">
                 {t('auth.sign_up')}
               </button>
             </p>

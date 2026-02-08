@@ -119,18 +119,7 @@ export default function SettingsPage() {
             support_whatsapp: '',
             maintenance_mode: false,
             maintenance_message: '',
-            // Light Colors
-            background_color: '#FFFFFF',
-            text_color: '#0F172A',
-            primary_color: '#FD4A12',
-            card_color: '#F1F5F9',
-            border_color: '#E2E8F0',
-            // Dark Colors
-            background_color_dark: '#0F172A',
-            text_color_dark: '#F8FAFC',
-            primary_color_dark: '#FD4A12',
-            card_color_dark: '#1E293B',
-            border_color_dark: '#334155',
+           
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -217,24 +206,13 @@ export default function SettingsPage() {
                     support_whatsapp: setting.support_whatsapp || '',
                     maintenance_mode: setting.maintenance_mode || false,
                     maintenance_message: setting.maintenance_message || '',
-                    // Light Colors
-                    background_color: setting.background_color || '#FFFFFF',
-                    text_color: setting.text_color || '#0F172A',
-                    primary_color: setting.primary_color || '#FD4A12',
-                    card_color: setting.card_color || '#F1F5F9',
-                    border_color: setting.border_color || '#E2E8F0',
-                    // Dark Colors
-                    background_color_dark: setting.background_color_dark || '#0F172A',
-                    text_color_dark: setting.text_color_dark || '#F8FAFC',
-                    primary_color_dark: setting.primary_color_dark || '#FD4A12',
-                    card_color_dark: setting.card_color_dark || '#1E293B',
-                    border_color_dark: setting.border_color_dark || '#334155',
+                   
                 })
                 setLogoPreview(setting.logo)
                 setBannerPreview(setting.banner)
             }
         } catch (error) {
-            console.error('Error fetching settings:', error)
+            console.log('Error fetching settings:', error)
             toast.error(t('settings.errorLoading'))
         } finally {
             setLoading(false)
@@ -271,12 +249,6 @@ export default function SettingsPage() {
 
     if (loading) {
         return (
-            // <div className="flex items-center justify-center min-h-screen">
-            //     <div className="text-center">
-            //         <Loader2 className="w-12 h-12 animate-spin mx-auto text-primary mb-4" />
-            //         <p className="text-slate-600 dark:text-slate-400">{t('common.loading')}</p>
-            //     </div>
-            // </div>
             <Loading />
         )
     }
@@ -301,7 +273,6 @@ export default function SettingsPage() {
                     <TabsList className="grid w-full grid-cols-6 bg-slate-100 dark:bg-slate-800 p-1">
                         <TabsTrigger value="general">{t('settings.generalSettings')}</TabsTrigger>
                         <TabsTrigger value="appearance">{t('settings.appearance')}</TabsTrigger>
-                        <TabsTrigger value="colors">{t('settings.colors')}</TabsTrigger>
                         <TabsTrigger value="contact">{t('settings.contactInfo')}</TabsTrigger>
                         <TabsTrigger value="social">{t('settings.socialMedia')}</TabsTrigger>
                         <TabsTrigger value="support">{t('settings.supportInfo')}</TabsTrigger>
@@ -891,273 +862,7 @@ export default function SettingsPage() {
                     </TabsContent>
 
                     {/* Colors Tab */}
-                    <TabsContent value="colors" className="space-y-6">
-                        <Card className="border-slate-200 dark:border-slate-800 shadow-sm">
-                            <CardHeader>
-                                <CardTitle className="text-xl flex items-center gap-2">
-                                    <Palette className="w-5 h-5" />
-                                    {t('settings.lightColors')}
-                                </CardTitle>
-                                <CardDescription>{t('settings.lightColorsDescription')}</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {/* Background Color */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="background_color" className="text-sm font-medium">
-                                            {t('settings.backgroundColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="background_color"
-                                                name="background_color"
-                                                type="color"
-                                                value={formik.values.background_color}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.background_color}
-                                                onChange={(e) => formik.setFieldValue('background_color', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#FFFFFF"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Text Color */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="text_color" className="text-sm font-medium">
-                                            {t('settings.textColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="text_color"
-                                                name="text_color"
-                                                type="color"
-                                                value={formik.values.text_color}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.text_color}
-                                                onChange={(e) => formik.setFieldValue('text_color', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#0F172A"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Primary Color */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="primary_color" className="text-sm font-medium">
-                                            {t('settings.primaryColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="primary_color"
-                                                name="primary_color"
-                                                type="color"
-                                                value={formik.values.primary_color}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.primary_color}
-                                                onChange={(e) => formik.setFieldValue('primary_color', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#FD4A12"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Card Color */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="card_color" className="text-sm font-medium">
-                                            {t('settings.cardColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="card_color"
-                                                name="card_color"
-                                                type="color"
-                                                value={formik.values.card_color}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.card_color}
-                                                onChange={(e) => formik.setFieldValue('card_color', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#F1F5F9"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Border Color */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="border_color" className="text-sm font-medium">
-                                            {t('settings.borderColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="border_color"
-                                                name="border_color"
-                                                type="color"
-                                                value={formik.values.border_color}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.border_color}
-                                                onChange={(e) => formik.setFieldValue('border_color', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#E2E8F0"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-slate-200 dark:border-slate-800 shadow-sm">
-                            <CardHeader>
-                                <CardTitle className="text-xl flex items-center gap-2">
-                                    <Palette className="w-5 h-5" />
-                                    {t('settings.darkColors')}
-                                </CardTitle>
-                                <CardDescription>{t('settings.darkColorsDescription')}</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {/* Background Color Dark */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="background_color_dark" className="text-sm font-medium">
-                                            {t('settings.backgroundColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="background_color_dark"
-                                                name="background_color_dark"
-                                                type="color"
-                                                value={formik.values.background_color_dark}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.background_color_dark}
-                                                onChange={(e) => formik.setFieldValue('background_color_dark', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#0F172A"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Text Color Dark */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="text_color_dark" className="text-sm font-medium">
-                                            {t('settings.textColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="text_color_dark"
-                                                name="text_color_dark"
-                                                type="color"
-                                                value={formik.values.text_color_dark}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.text_color_dark}
-                                                onChange={(e) => formik.setFieldValue('text_color_dark', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#F8FAFC"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Primary Color Dark */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="primary_color_dark" className="text-sm font-medium">
-                                            {t('settings.primaryColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="primary_color_dark"
-                                                name="primary_color_dark"
-                                                type="color"
-                                                value={formik.values.primary_color_dark}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.primary_color_dark}
-                                                onChange={(e) => formik.setFieldValue('primary_color_dark', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#FD4A12"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Card Color Dark */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="card_color_dark" className="text-sm font-medium">
-                                            {t('settings.cardColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="card_color_dark"
-                                                name="card_color_dark"
-                                                type="color"
-                                                value={formik.values.card_color_dark}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.card_color_dark}
-                                                onChange={(e) => formik.setFieldValue('card_color_dark', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#1E293B"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Border Color Dark */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="border_color_dark" className="text-sm font-medium">
-                                            {t('settings.borderColor')}
-                                        </Label>
-                                        <div className="flex gap-2">
-                                            <Input
-                                                id="border_color_dark"
-                                                name="border_color_dark"
-                                                type="color"
-                                                value={formik.values.border_color_dark}
-                                                onChange={formik.handleChange}
-                                                className="h-11 w-20 cursor-pointer"
-                                            />
-                                            <Input
-                                                type="text"
-                                                value={formik.values.border_color_dark}
-                                                onChange={(e) => formik.setFieldValue('border_color_dark', e.target.value)}
-                                                className="h-11 flex-1 font-mono"
-                                                placeholder="#334155"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
+               
                 </Tabs>
 
                 {/* Submit Button */}

@@ -66,8 +66,23 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             icon: ImageIcon
         },
         {
+            title: t('sidebar.stores'),
+            href: '/admin/stores',
+            icon: Store
+        },
+        {
+            title: t('sidebar.orders'),
+            href: '/admin/orders',
+            icon: Store
+        },
+        {
             title: t('sidebar.users'),
             href: '/admin/users',
+            icon: Users
+        },
+        {
+            title: t('sidebar.roles'),
+            href: '/admin/roles',
             icon: Users
         }
     ]

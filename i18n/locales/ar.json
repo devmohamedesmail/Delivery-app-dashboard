@@ -764,5 +764,54 @@
       "slugRequired": "الرابط المختصر مطلوب",
       "slugFormat": "الرابط يمكن أن يحتوي فقط على أحرف صغيرة وأرقام وشرطات"
     }
+  },
+  "orders": {
+    "title": "إدارة الطلبات",
+    "subtitle": "متابعة وإدارة جميع طلبات العملاء",
+    "totalOrders": "إجمالي الطلبات",
+    "pending": "قيد الانتظار",
+    "accepted": "مقبول",
+    "preparing": "يجري التحضير",
+    "on_the_way": "في الطريق",
+    "delivered": "تم التوصيل",
+    "cancelled": "ملغي",
+    "allStatuses": "جميع الحالات",
+    "searchPlaceholder": "ابحث بالمعرف أو العميل أو المتجر...",
+    "noOrders": "لا توجد طلبات",
+    "noResults": "لا توجد نتائج",
+    "clearSearch": "مسح البحث",
+    "customer": "العميل",
+    "store": "المتجر",
+    "status": "الحالة",
+    "total": "الإجمالي",
+    "date": "التاريخ",
+    "orderDetails": "تفاصيل الطلب",
+    "orderDetailsDesc": "معلومات الطلب الكاملة وإدارة حالته",
+    "customerInfo": "معلومات العميل",
+    "storeInfo": "معلومات المتجر",
+    "deliveryInfo": "معلومات التوصيل",
+    "paymentInfo": "معلومات الدفع",
+    "name": "الاسم",
+    "phone": "الهاتف",
+    "userId": "المستخدم",
+    "storeName": "المتجر",
+    "address": "العنوان",
+    "deliveredAt": "وقت التوصيل",
+    "items": "المنتجات",
+    "updateStatusSuccess": "تم تحديث حالة الطلب بنجاح",
+    "deleteSuccess": "تم حذف الطلب بنجاح",
+    "deleteMessage": "هل أنت متأكد من حذف الطلب رقم #{{id}}؟ لا يمكن التراجع عن هذا الإجراء.",
+    "statuses": {
+      "pending": "قيد الانتظار",
+      "accepted": "مقبول",
+      "preparing": "يجري التحضير",
+      "on_the_way": "في الطريق",
+      "delivered": "تم التوصيل",
+      "cancelled": "ملغي"
+    },
+    "errors": {
+      "updateFailed": "فشل تحديث حالة الطلب",
+      "deleteFailed": "فشل حذف الطلب"
+    }
   }
 }

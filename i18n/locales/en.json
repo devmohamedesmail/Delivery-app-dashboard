@@ -750,5 +750,54 @@
       "slugRequired": "Slug is required",
       "slugFormat": "Slug can only contain lowercase letters, numbers, and hyphens"
     }
+  },
+  "orders": {
+    "title": "Orders Management",
+    "subtitle": "Monitor and manage all customer orders",
+    "totalOrders": "Total Orders",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "preparing": "Preparing",
+    "on_the_way": "On the Way",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "allStatuses": "All Statuses",
+    "searchPlaceholder": "Search by ID, customer, store...",
+    "noOrders": "No orders found",
+    "noResults": "No results found",
+    "clearSearch": "Clear Search",
+    "customer": "Customer",
+    "store": "Store",
+    "status": "Status",
+    "total": "Total",
+    "date": "Date",
+    "orderDetails": "Order Details",
+    "orderDetailsDesc": "Full order information and status management",
+    "customerInfo": "Customer Info",
+    "storeInfo": "Store Info",
+    "deliveryInfo": "Delivery Info",
+    "paymentInfo": "Payment Info",
+    "name": "Name",
+    "phone": "Phone",
+    "userId": "User",
+    "storeName": "Store",
+    "address": "Address",
+    "deliveredAt": "Delivered At",
+    "items": "Items",
+    "updateStatusSuccess": "Order status updated successfully",
+    "deleteSuccess": "Order deleted successfully",
+    "deleteMessage": "Are you sure you want to delete order #{{id}}? This cannot be undone.",
+    "statuses": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "preparing": "Preparing",
+      "on_the_way": "On the Way",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "errors": {
+      "updateFailed": "Failed to update order status",
+      "deleteFailed": "Failed to delete order"
+    }
   }
 }

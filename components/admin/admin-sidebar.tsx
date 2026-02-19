@@ -10,7 +10,8 @@ import {
     BarChart3,
     FileText,
     Store,
-    MapPin
+    MapPin,
+    Image as ImageIcon
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from 'react-i18next'
@@ -28,8 +29,8 @@ interface AdminSidebarProps {
 export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSidebarProps) {
     const pathname = usePathname()
     const { t } = useTranslation();
-    const {settings} = useSetting();
-    
+    const { settings } = useSetting();
+
 
 
     const navigationItems = [
@@ -58,6 +59,11 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             title: t('sidebar.store_types'),
             href: '/admin/store-types',
             icon: MapPin
+        },
+        {
+            title: t('sidebar.banners'),
+            href: '/admin/banners',
+            icon: ImageIcon
         },
         {
             title: t('sidebar.users'),

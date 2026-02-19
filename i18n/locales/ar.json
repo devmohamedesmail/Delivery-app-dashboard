@@ -44,7 +44,8 @@
     "pages": "الصفحات",
     "categories": " الاقسام ",
     "subcategories": "  الاقسام الفرعية",
-    "store_types": " انواع المتاجر "
+    "store_types": " انواع المتاجر ",
+    "banners": "البنرات"
   },
   "header": {
     "searchPlaceholder": "بحث...",
@@ -663,6 +664,42 @@
     },
     "footer": {
       "copyright": "© 2026 تطبيق التوصيل. جميع الحقوق محفوظة."
+    }
+  },
+  "banners": {
+    "title": "إدارة البنرات",
+    "subtitle": "إدارة البنرات الترويجية المعروضة عبر المنصة",
+    "add": "إضافة بنر جديد",
+    "editBanner": "تعديل البنر",
+    "totalBanners": "إجمالي البنرات",
+    "published": "منشور",
+    "unpublished": "غير منشور",
+    "searchPlaceholder": "البحث بالعنوان أو الرابط...",
+    "noResults": "لا توجد نتائج",
+    "tryDifferentSearch": "جرب كلمة بحث مختلفة",
+    "clearSearch": "مسح البحث",
+    "searchResults": "نتائج البحث",
+    "noBannersFound": "لم يتم العثور على بنرات",
+    "noBannersSubtitle": "ابدأ بإنشاء بنر جديد",
+    "title_field": "العنوان",
+    "slug": "الرابط المختصر",
+    "content": "المحتوى",
+    "image": "الصورة",
+    "is_published": "منشور",
+    "titlePlaceholder": "مثال: عروض الصيف",
+    "slugPlaceholder": "مثال: summer-sale",
+    "contentPlaceholder": "نص وصف البنر...",
+    "clickToUpload": "انقر لتحميل صورة",
+    "currentImage": "الصورة الحالية",
+    "changeImage": "تغيير الصورة",
+    "createSuccess": "تم إنشاء البنر بنجاح",
+    "updateSuccess": "تم تحديث البنر بنجاح",
+    "deleteSuccess": "تم حذف البنر بنجاح",
+    "deleteConfirmMessage": "هل أنت متأكد من حذف هذا البنر؟ لا يمكن التراجع عن هذا الإجراء.",
+    "validation": {
+      "titleRequired": "العنوان مطلوب",
+      "slugRequired": "الرابط المختصر مطلوب",
+      "slugFormat": "الرابط يمكن أن يحتوي فقط على أحرف صغيرة وأرقام وشرطات"
     }
   }
 }

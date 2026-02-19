@@ -44,7 +44,8 @@
     "pages": "Pages",
     "categories": "Categories",
     "subcategories": "SubCategories",
-    "store_types": "Store Types"
+    "store_types": "Store Types",
+    "banners": "Banners"
   },
   "header": {
     "searchPlaceholder": "Search...",
@@ -649,6 +650,42 @@
     },
     "footer": {
       "copyright": "© 2026 DeliveryApp. All rights reserved."
+    }
+  },
+  "banners": {
+    "title": "Banners Management",
+    "subtitle": "Manage promotional banners displayed across the platform",
+    "add": "Add New Banner",
+    "editBanner": "Edit Banner",
+    "totalBanners": "Total Banners",
+    "published": "Published",
+    "unpublished": "Unpublished",
+    "searchPlaceholder": "Search by title or slug...",
+    "noResults": "No results found",
+    "tryDifferentSearch": "Try a different search term",
+    "clearSearch": "Clear Search",
+    "searchResults": "Search Results",
+    "noBannersFound": "No banners found",
+    "noBannersSubtitle": "Get started by creating a new banner",
+    "title_field": "Title",
+    "slug": "Slug",
+    "content": "Content",
+    "image": "Image",
+    "is_published": "Published",
+    "titlePlaceholder": "e.g., Summer Sale",
+    "slugPlaceholder": "e.g., summer-sale",
+    "contentPlaceholder": "Banner description or body text...",
+    "clickToUpload": "Click to upload",
+    "currentImage": "Current Image",
+    "changeImage": "Change Image",
+    "createSuccess": "Banner created successfully",
+    "updateSuccess": "Banner updated successfully",
+    "deleteSuccess": "Banner deleted successfully",
+    "deleteConfirmMessage": "Are you sure you want to delete this banner? This cannot be undone.",
+    "validation": {
+      "titleRequired": "Title is required",
+      "slugRequired": "Slug is required",
+      "slugFormat": "Slug can only contain lowercase letters, numbers, and hyphens"
     }
   }
 }

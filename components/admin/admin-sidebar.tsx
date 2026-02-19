@@ -55,6 +55,11 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             icon: MapPin
         },
         {
+            title: t('sidebar.store_types'),
+            href: '/admin/store-types',
+            icon: MapPin
+        },
+        {
             title: t('sidebar.users'),
             href: '/admin/users',
             icon: Users

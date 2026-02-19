@@ -47,18 +47,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const payload = isEmail
         ? { email: emailOrPhone, password }
         : { phone: emailOrPhone, password }
-
       const res = await axios.post(`${config.API_URL}/auth/login`, payload)
       const userData = res.data.user
       const { user, token } = res.data;
       setUser(user)
       localStorage.setItem('user', JSON.stringify(user))
       setCookie("access_token", token)
+    
       return {
         success: true,
         user: userData
       }
     } catch (error) {
+      
       return { success: false, message: getErrorMessage(error) }
     }
   }

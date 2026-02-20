@@ -546,13 +546,41 @@
     "pages_list": "Pages List"
   },
   "categories": {
+    "title": "Categories Management",
+    "subtitle": "Manage and organize all product categories",
     "add": "Add New Category",
+    "edit": "Edit Category",
     "add_sub": "Add New SubCategory",
     "category": "Category",
+    "totalCategories": "Total Categories",
+    "searchPlaceholder": "Search by name or description...",
+    "name": "Category Name",
+    "namePlaceholder": "e.g., Beverages",
+    "description": "Description",
+    "descriptionPlaceholder": "Optional: brief description",
+    "image": "Image",
+    "storeType": "Store Type",
+    "selectStoreType": "Select a store type",
+    "clickToUpload": "Click to upload an image",
+    "changeImage": "Change Image",
+    "formDescription": "Fill in the details below to save the category.",
+    "noCategories": "No categories found",
+    "noResults": "No results found",
+    "clearSearch": "Clear Search",
+    "createSuccess": "Category created successfully",
+    "updateSuccess": "Category updated successfully",
+    "deleteSuccess": "Category deleted successfully",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
     "titleEn": "Category Name (English)",
     "titleAr": "Category Name (Arabic)",
-    "selectcategory": " Selec category",
+    "selectcategory": "Select category",
+    "errors": {
+      "saveFailed": "Failed to save category",
+      "deleteFailed": "Failed to delete category"
+    },
     "validation": {
+      "nameRequired": "Category name is required",
+      "storeTypeRequired": "Store type is required",
       "titleEn": "English category name is required",
       "titleAr": "Arabic category name is required"
     }

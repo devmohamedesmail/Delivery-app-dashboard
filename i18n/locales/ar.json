@@ -47,7 +47,8 @@
     "store_types": " انواع المتاجر ",
     "banners": "البنرات",
     "orders": "الطلبات",
-    "roles": "الادوار"
+    "roles": "الادوار",
+    "notifications": "الإشعارات"
   },
   "header": {
     "searchPlaceholder": "بحث...",
@@ -840,6 +841,39 @@
     "errors": {
       "updateFailed": "فشل تحديث حالة الطلب",
       "deleteFailed": "فشل حذف الطلب"
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "subtitle": "إرسال وإدارة جميع إشعارات النظام",
+    "sendNew": "إرسال إشعار",
+    "totalNotifications": "إجمالي الإشعارات",
+    "todayCount": "أُرسلت اليوم",
+    "broadcastCount": "بث عام",
+    "searchPlaceholder": "البحث بالعنوان أو الرسالة...",
+    "results": "نتيجة",
+    "title_field": "العنوان",
+    "message": "الرسالة",
+    "date": "التاريخ",
+    "data": "البيانات",
+    "details": "تفاصيل الإشعار",
+    "detailsDesc": "التفاصيل الكاملة لهذا الإشعار",
+    "sendNewDesc": "أرسل إشعاراً لجميع المستخدمين",
+    "titlePlaceholder": "مثال: عرض جديد!",
+    "messagePlaceholder": "أدخل نص الإشعار...",
+    "broadcastHint": "سيتم إرسال هذا الإشعار لجميع المستخدمين على المنصة",
+    "send": "إرسال",
+    "noNotifications": "لا توجد إشعارات",
+    "noResults": "لا توجد نتائج",
+    "tryDifferentSearch": "جرب كلمة بحث مختلفة",
+    "clearSearch": "مسح البحث",
+    "getStarted": "أرسل أول إشعار للبدء",
+    "createSuccess": "تم إرسال الإشعار بنجاح",
+    "deleteSuccess": "تم حذف الإشعار بنجاح",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{title}}\"؟ لا يمكن التراجع عن هذا الإجراء.",
+    "errors": {
+      "createFailed": "فشل إرسال الإشعار",
+      "deleteFailed": "فشل حذف الإشعار"
     }
   }
 }

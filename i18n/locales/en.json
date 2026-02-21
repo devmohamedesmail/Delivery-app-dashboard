@@ -47,7 +47,8 @@
     "store_types": "Store Types",
     "banners": "Banners",
     "orders": "Orders",
-    "roles": "Roles"
+    "roles": "Roles",
+    "notifications": "Notifications"
   },
   "header": {
     "searchPlaceholder": "Search...",
@@ -826,6 +827,39 @@
     "errors": {
       "updateFailed": "Failed to update order status",
       "deleteFailed": "Failed to delete order"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Broadcast and manage all system notifications",
+    "sendNew": "Send Notification",
+    "totalNotifications": "Total Notifications",
+    "todayCount": "Sent Today",
+    "broadcastCount": "Broadcast",
+    "searchPlaceholder": "Search by title or message...",
+    "results": "results",
+    "title_field": "Title",
+    "message": "Message",
+    "date": "Date",
+    "data": "Data",
+    "details": "Notification Details",
+    "detailsDesc": "Full details of this notification",
+    "sendNewDesc": "Send a broadcast notification to all users",
+    "titlePlaceholder": "e.g., New Offer Available!",
+    "messagePlaceholder": "Enter the notification body...",
+    "broadcastHint": "This notification will be sent to ALL users on the platform",
+    "send": "Send",
+    "noNotifications": "No notifications found",
+    "noResults": "No results found",
+    "tryDifferentSearch": "Try a different search term",
+    "clearSearch": "Clear Search",
+    "getStarted": "Send your first notification to get started",
+    "createSuccess": "Notification sent successfully",
+    "deleteSuccess": "Notification deleted successfully",
+    "deleteMessage": "Are you sure you want to delete \"{{title}}\"? This action cannot be undone.",
+    "errors": {
+      "createFailed": "Failed to send notification",
+      "deleteFailed": "Failed to delete notification"
     }
   }
 }

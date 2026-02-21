@@ -16,7 +16,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useTranslation } from 'react-i18next'
 import { useSetting } from '@/hooks/useSetting'
-import Image from 'next/image'
+import { useAuth } from '@/hooks/useAuth'
 
 interface AdminSidebarProps {
     isCollapsed: boolean
@@ -30,6 +30,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
     const pathname = usePathname()
     const { t } = useTranslation();
     const { settings } = useSetting();
+    const { user } = useAuth();
 
 
 
@@ -89,6 +90,11 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             title: t('sidebar.roles'),
             href: '/admin/roles',
             icon: Users
+        },
+        {
+            title: t('sidebar.notifications'),
+            href: '/admin/notifications',
+            icon: Users
         }
     ]
 
@@ -114,11 +120,13 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                 {/* Logo Section */}
                 <div className="flex h-16 items-center justify-between border-b border-border px-6">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/70">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg ">
                             {settings?.logo && (
                                 <img src={settings?.logo} alt="Logo" width={40} height={40} />
                             )}
                         </div>
+                        {/* <Logo /> */}
+                        
                         {!isCollapsed && (
                             <div className="flex flex-col">
                                 <span className="text-lg font-bold text-foreground">{settings?.name_en}</span>
@@ -165,12 +173,12 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                         isCollapsed && 'justify-center'
                     )}>
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                            A
+                            {user?.name?.charAt(0)}
                         </div>
                         {!isCollapsed && (
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground truncate">Admin User</p>
-                                <p className="text-xs text-muted-foreground truncate">admin@delivery.com</p>
+                                <p className="text-sm font-medium text-foreground truncate">{user?.name}</p>
+                                <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
                             </div>
                         )}
                     </div>

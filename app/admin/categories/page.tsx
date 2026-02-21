@@ -442,7 +442,7 @@ function CategoryFormDialog({
                             <SelectContent>
                                 {storeTypes.map((st) => (
                                     <SelectItem key={st.id} value={String(st.id)}>
-                                        {st.name_en}
+                                        {st.name_en} - {st.name_ar}
                                     </SelectItem>
                                 ))}
                             </SelectContent>

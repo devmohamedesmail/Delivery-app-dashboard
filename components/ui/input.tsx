@@ -1,8 +1,10 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useTranslation } from "react-i18next"
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  const {t}=useTranslation();
   return (
     <input
       type={type}

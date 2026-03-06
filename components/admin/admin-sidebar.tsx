@@ -28,7 +28,7 @@ interface AdminSidebarProps {
 
 export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSidebarProps) {
     const pathname = usePathname()
-    const { t } = useTranslation();
+    const { t , i18n} = useTranslation();
     const { settings } = useSetting();
     const { user } = useAuth();
 
@@ -111,7 +111,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
             {/* Sidebar */}
             <aside
                 className={cn(
-                    'fixed left-0 top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out',
+                    `fixed ${i18n.language === 'ar' ? 'right-0 ' : 'left-0' } top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out`,
                     'flex flex-col',
                     isCollapsed && !isMobileOpen ? 'w-20' : 'w-72',
                     isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'

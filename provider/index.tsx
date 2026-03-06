@@ -6,6 +6,7 @@ import { AuthProvider } from '@/context/auth-provider'
 import AppCookiesProvider from '@/context/cookie-provider'
 import SettingProvider from '@/context/setting-provider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import HtmlLanguage from '@/components/ui/html-language'
 
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -13,6 +14,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
     return (
         <AppCookiesProvider>
+            <HtmlLanguage />
+            
             <QueryClientProvider client={queryClient}>
                 <I18nProvider>
                     <AuthProvider>

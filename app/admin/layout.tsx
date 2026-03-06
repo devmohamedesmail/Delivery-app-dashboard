@@ -34,7 +34,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div
         className={cn(
           'transition-all duration-300 ease-in-out',
-          isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'
+          // isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'
+          isSidebarCollapsed
+            ? 'ltr:lg:pl-20 rtl:lg:pr-20'
+            : 'ltr:lg:pl-72 rtl:lg:pr-72'
         )}
       >
         {/* Header */}

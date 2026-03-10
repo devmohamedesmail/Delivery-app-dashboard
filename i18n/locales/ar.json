@@ -61,16 +61,7 @@
   "dashboard": {
     "title": "لوحة التحكم",
     "welcome": "مرحباً بعودتك! إليك ما يحدث اليوم.",
-    "totalUsers": "إجمالي المستخدمين",
-    "activeTrips": "الرحلات النشطة",
-    "revenue": "الإيرادات",
-    "completionRate": "معدل الإنجاز",
-    "fromLastMonth": "من الشهر الماضي",
-    "recentActivity": "النشاط الأخير",
-    "quickActions": "إجراءات سريعة",
-    "addUser": "إضافة مستخدم",
-    "newTrip": "رحلة جديدة",
-    "viewReports": "عرض التقارير"
+    "total_orders": "إجمالي الطلبات"
   },
   "users": {
     "title": "إدارة المستخدمين",

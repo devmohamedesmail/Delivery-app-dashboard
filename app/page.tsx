@@ -1,20 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"
 import {
-  Package,
-  Truck,
   Clock,
   Shield,
   MapPin,
-  Star,
   ArrowRight,
-  CheckCircle2,
-  Zap,
-  Users
+  Zap
 } from 'lucide-react'
 import Navbar from '@/components/user/navbar'
 import Hero from '@/components/user/hero'

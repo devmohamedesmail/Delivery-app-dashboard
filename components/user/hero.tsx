@@ -29,13 +29,13 @@ export default function Hero() {
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Link href="/register">
+                <Link href="/auth/register">
                   <Button size="lg" className="w-full sm:w-auto shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
                     {t('home.hero.createAccount')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link href="/login">
+                <Link href="/auth/login">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto">
                     {t('home.hero.signIn')}
                   </Button>

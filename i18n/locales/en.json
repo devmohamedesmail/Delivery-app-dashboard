@@ -61,16 +61,7 @@
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome back! Here's what's happening today.",
-    "totalUsers": "Total Users",
-    "activeTrips": "Active Trips",
-    "revenue": "Revenue",
-    "completionRate": "Completion Rate",
-    "fromLastMonth": "from last month",
-    "recentActivity": "Recent Activity",
-    "quickActions": "Quick Actions",
-    "addUser": "Add User",
-    "newTrip": "New Trip",
-    "viewReports": "View Reports"
+    "total_orders":"Total Orders"
   },
   "users": {
     "title": "Users Management",
@@ -862,4 +853,5 @@
       "deleteFailed": "Failed to delete notification"
     }
   }
+  
 }

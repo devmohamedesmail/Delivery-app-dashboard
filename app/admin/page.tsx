@@ -1,49 +1,40 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { Package, ShoppingCart, Users, TrendingUp } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import OrdersController from '@/controllers/orders-controller'
+import DashboardState from '@/components/ui/dashboard-state'
+import { useTranslation } from 'react-i18next'
 
 export default function AdminDashboard() {
-  const stats = [
-    {
-      title: 'Total Orders',
-      value: '1,234',
-      change: '+12.5%',
-      icon: ShoppingCart,
-      color: 'text-blue-500'
-    },
-    {
-      title: 'Products',
-      value: '567',
-      change: '+8.2%',
-      icon: Package,
-      color: 'text-green-500'
-    },
-    {
-      title: 'Customers',
-      value: '8,901',
-      change: '+23.1%',
-      icon: Users,
-      color: 'text-purple-500'
-    },
-    {
-      title: 'Revenue',
-      value: '$45,678',
-      change: '+15.3%',
-      icon: TrendingUp,
-      color: 'text-orange-500'
-    }
-  ]
+  const { t } = useTranslation();
 
+
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['orders'],
+    queryFn: () => OrdersController.getOrders(),
+    placeholderData: (prev) => prev,
+  })
+  console.log("orders", data?.orders?.length)
   return (
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">Welcome back! Here's what's happening today.</p>
+        <h1 className="text-3xl font-bold text-foreground">{t('dashboard.title')}</h1>
+        <p className="text-muted-foreground mt-1">{t('dashboard.welcome')}</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => {
+        <DashboardState
+          title={t('dashboard.total_orders')}
+          value={data?.orders?.length || 0}
+          change={'+12.5%'}
+          icon={<ShoppingCart />}
+          color={'text-blue-500'}
+        />
+        {/* {stats.map((stat) => {
           const Icon = stat.icon
           return (
             <div
@@ -62,7 +53,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           )
-        })}
+        })} */}
       </div>
 
       {/* Recent Activity */}

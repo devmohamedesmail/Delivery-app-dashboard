@@ -404,7 +404,11 @@
       "maintenanceMessageRequired": "Maintenance message is required when maintenance mode is enabled",
       "emailInvalid": "Please enter a valid email address",
       "urlInvalid": "Please enter a valid URL"
-    }
+    },
+    "orderInfo":"Order Info",
+    "orderDetails":"Order Details",
+    "order-ratio-placeholder": "Enter order ratio",
+    "order-ratio":"Order Ratio"
   },
   "profile": {
     "title": "My Profile",

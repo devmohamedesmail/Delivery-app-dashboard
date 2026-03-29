@@ -42,18 +42,7 @@ interface SettingData {
     support_whatsapp: string | null
     maintenance_mode: boolean
     maintenance_message: string | null
-    // Light Colors
-    background_color: string
-    text_color: string
-    primary_color: string
-    card_color: string
-    border_color: string
-    // Dark Colors
-    background_color_dark: string
-    text_color_dark: string
-    primary_color_dark: string
-    card_color_dark: string
-    border_color_dark: string
+    order_extra_ratio: string | null
 }
 
 export default function SettingsPage() {
@@ -94,6 +83,7 @@ export default function SettingsPage() {
             then: (schema) => schema.required(t('settings.validation.maintenanceMessageRequired')),
             otherwise: (schema) => schema.nullable(),
         }),
+        order_extra_ratio: Yup.string().nullable(),
     })
 
     const formik = useFormik({
@@ -119,6 +109,7 @@ export default function SettingsPage() {
             support_whatsapp: '',
             maintenance_mode: false,
             maintenance_message: '',
+            order_extra_ratio: '',
            
         },
         validationSchema,
@@ -206,7 +197,7 @@ export default function SettingsPage() {
                     support_whatsapp: setting.support_whatsapp || '',
                     maintenance_mode: setting.maintenance_mode || false,
                     maintenance_message: setting.maintenance_message || '',
-                   
+                    order_extra_ratio: setting.order_extra_ratio || '',
                 })
                 setLogoPreview(setting.logo)
                 setBannerPreview(setting.banner)
@@ -276,6 +267,7 @@ export default function SettingsPage() {
                         <TabsTrigger value="contact">{t('settings.contactInfo')}</TabsTrigger>
                         <TabsTrigger value="social">{t('settings.socialMedia')}</TabsTrigger>
                         <TabsTrigger value="support">{t('settings.supportInfo')}</TabsTrigger>
+                        <TabsTrigger value="order">{t('settings.orderInfo')}</TabsTrigger>
                     </TabsList>
 
                     {/* General Settings Tab */}
@@ -861,6 +853,44 @@ export default function SettingsPage() {
                         </Card>
                     </TabsContent>
 
+
+ <TabsContent value="order" className="space-y-6">
+                        <Card className="border-slate-200 dark:border-slate-800 shadow-sm">
+                            <CardHeader>
+                                <CardTitle className="text-xl">{t('settings.orderInfo')}</CardTitle>
+                                <CardDescription>{t('settings.orderDetails')}</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {/* Support Phone */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="order_ratio" className="text-sm font-medium">
+                                            {t('settings.order-ratio')}
+                                        </Label>
+                                        <Input
+                                            id="order_ratio"
+                                            name="order_extra_ratio"
+                                            type="text"
+                                            placeholder={t('settings.order-ratio-placeholder')}
+                                            value={formik.values.order_extra_ratio}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                   
+
+                                   
+
+                                
+
+                                </div>
+
+                            
+                            </CardContent>
+                        </Card>
+                    </TabsContent>
                     {/* Colors Tab */}
                
                 </Tabs>

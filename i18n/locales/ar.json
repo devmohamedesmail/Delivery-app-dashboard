@@ -404,7 +404,11 @@
       "maintenanceMessageRequired": "رسالة الصيانة مطلوبة عند تفعيل وضع الصيانة",
       "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
       "urlInvalid": "يرجى إدخال رابط صحيح"
-    }
+    },
+    "orderInfo":"معلومات الطلب",
+    "orderDetails":"تفاصيل الطلب",
+    "order-ratio-placeholder": "أدخل نسبة الطلب",
+    "order-ratio":"نسبة الطلب"
   },
   "stores": {
     "title": "المتاجر",

@@ -34,14 +34,29 @@ interface UpdateAreaData {
     place_id?: number;
 }
 
+export interface AreasResponse {
+    data: Area[];
+    meta: {
+        page: number;
+        limit: number;
+        total: number;
+        totalPages: number;
+    };
+}
+
 export default class AreaController {
     /**
      * Get all areas
      */
-    static async getAreas(): Promise<Area[]> {
+    static async getAreas(page: number = 1, limit: number = 10, search: string = "", place_id?: string): Promise<AreasResponse> {
         try {
-            const response = await axios.get(`${config.API_URL}/areas`);
-            return response.data.data;
+            const response = await axios.get(`${config.API_URL}/areas`, {
+                params: { page, limit, search, place_id }
+            });
+            return {
+                data: response.data.data,
+                meta: response.data.meta
+            };
         } catch (error) {
             throw error;
         }

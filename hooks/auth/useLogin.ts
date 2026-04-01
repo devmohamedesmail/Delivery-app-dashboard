@@ -6,13 +6,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { useCookies } from 'react-cookie'
 import toast from 'react-hot-toast'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Mail, Phone, Lock, ArrowRight, Loader2 } from 'lucide-react'
+
 
 export default function useLogin() {
   const [rememberMe, setRememberMe] = useState(false)
@@ -54,7 +48,7 @@ export default function useLogin() {
             break;
           case "delivery_man":
             toast.success(t("auth.login_success"))
-            router.push('/admin')
+            router.push('/admin/areas')
             break;
           case "customer":
             toast.success(t("auth.login_success"))

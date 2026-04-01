@@ -29,7 +29,8 @@
     "updating": " تحديث ",
     "selectImage": " اختر صورة ",
     "creating": "جاري الإنشاء...",
-    "noData": "لا توجد بيانات"
+    "noData": "لا توجد بيانات",
+     "settings":"  الاعدادات "
   },
   "sidebar": {
     "dashboard": "لوحة التحكم",
@@ -284,7 +285,9 @@
     "login_by_email": " الدخول بالايميل",
     "login_by_phone": " الدخول بالهاتف",
     "profile": " الملف الشخصي ",
-    "logout": " تسجيل الخروج"
+    "logout": " تسجيل الخروج",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "logout_success_description": "تم تسجيل الخروج بنجاح."
   },
   "settings": {
     "title": "إعدادات التطبيق",

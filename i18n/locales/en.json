@@ -29,7 +29,8 @@
     "updating": "Updating...",
     "selectImage": "Select Image",
     "creating": "Creating...",
-    "noData": "No data available"
+    "noData": "No data available",
+    "settings":"Settings"
   },
   "sidebar": {
     "dashboard": "Dashboard",
@@ -284,7 +285,9 @@
     "login_by_email": "Login by email",
     "login_by_phone": "Login by phone",
     "profile": "Profile",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logout_success": "Logout Successful",
+    "logout_success_description": "You have been logged out successfully."
   },
   "settings": {
     "title": "Application Settings",

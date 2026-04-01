@@ -127,7 +127,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                     `fixed ${i18n.language === 'ar' ? 'right-0 ' : 'left-0' } top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out`,
                     'flex flex-col',
                     isCollapsed && !isMobileOpen ? 'w-20' : 'w-72',
-                    isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+                    isMobileOpen ? 'translate-x-0' : `${i18n.language === 'ar' ? 'translate-x-full' : '-translate-x-full'} lg:translate-x-0`
                 )}
             >
                 {/* Logo Section */}

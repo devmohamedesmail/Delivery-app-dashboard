@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import AreaController from '@/controllers/areas-controller';
 import PlaceController from '@/controllers/places-controller';
@@ -29,7 +29,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge";
-import { Pencil, Trash2, Plus } from "lucide-react";
+import { Pencil, Trash2, Plus, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import toast from 'react-hot-toast';
 import {
     Select,
@@ -38,20 +38,39 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import Loading from '@/components/ui/loading';
 
 export default function AreasPage() {
-        const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
     const { t, i18n } = useTranslation();
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editingArea, setEditingArea] = useState<Area | null>(null);
+    const [page, setPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState("");
+    const [placeFilter, setPlaceFilter] = useState<string>("all");
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+            setPage(1);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+    useEffect(() => {
+        setPage(1);
+    }, [placeFilter]);
 
     /* ================= FETCH AREAS ================= */
-    const { data: areas, isLoading } = useQuery({
-        queryKey: ["areas"],
-        queryFn: AreaController.getAreas,
+    const { data: areasResponse, isLoading } = useQuery({
+        queryKey: ["areas", page, debouncedSearch, placeFilter],
+        queryFn: () => AreaController.getAreas(page, 10, debouncedSearch, placeFilter === "all" ? undefined : placeFilter),
     });
-
+    const areas = areasResponse?.data || [];
+    const meta = areasResponse?.meta;
+    
     /* ================= FETCH PLACES ================= */
     const { data: places } = useQuery({
         queryKey: ["places"],
@@ -190,9 +209,40 @@ export default function AreasPage() {
 
   return (
      <div className="p-6 space-y-6">
-            <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">{t("areas.title") || "Areas"}</h1>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div className="flex items-center gap-2">
+                    <h1 className="text-2xl font-bold">{t("areas.title") || "Areas"}</h1>
+                    {meta?.total !== undefined && (
+                        <Badge variant="secondary" className="text-sm">
+                            {meta.total} {t("areas.title") || "Areas"}
+                        </Badge>
+                    )}
+                </div>
 
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <Select value={placeFilter} onValueChange={setPlaceFilter}>
+                        <SelectTrigger className="w-45">
+                            <SelectValue placeholder={t("areas.filterByPlace") || "Filter by Place"} />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">{t("common.all") || "All Places"}</SelectItem>
+                            {places?.map((place: Place) => (
+                                <SelectItem key={place.id} value={place.id.toString()}>
+                                    {place.name}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+
+                    <div className="relative w-full sm:w-64">
+                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                        <Input
+                            placeholder={t("common.search") || "Search..."}
+                            className="pl-8"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
                 {/* CREATE DIALOG */}
                 <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
                     <DialogTrigger asChild>
@@ -293,6 +343,7 @@ export default function AreasPage() {
                         </form>
                     </DialogContent>
                 </Dialog>
+                </div>
             </div>
 
             {/* EDIT DIALOG */}
@@ -407,7 +458,7 @@ export default function AreasPage() {
                         {isLoading ? (
                             <TableRow>
                                 <TableCell colSpan={6} className="text-center">
-                                    Loading...
+                                   <Loading />
                                 </TableCell>
                             </TableRow>
                         ) : areas && areas.length > 0 ? (
@@ -455,6 +506,35 @@ export default function AreasPage() {
                     </TableBody>
                 </Table>
             </div>
+
+            {/* PAGINATION */}
+            {meta && meta.totalPages > 1 && (
+                <div className="flex items-center justify-between">
+                    <p className="text-sm text-gray-500">
+                        {t("common.showing") || "Showing"} {((meta.page - 1) * meta.limit) + 1} {t("common.to") || "to"} {Math.min(meta.page * meta.limit, meta.total)} {t("common.of") || "of"} {meta.total} {t("common.entries") || "entries"}
+                    </p>
+                    <div className="flex gap-2">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={meta.page <= 1}
+                            onClick={() => setPage(p => p - 1)}
+                        >
+                            <ChevronLeft className="w-4 h-4 mr-1" />
+                            {t("common.previous") || "Previous"}
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={meta.page >= meta.totalPages}
+                            onClick={() => setPage(p => p + 1)}
+                        >
+                            {t("common.next") || "Next"}
+                            <ChevronRight className="w-4 h-4 ml-1" />
+                        </Button>
+                    </div>
+                </div>
+            )}
         </div>
   )
 }

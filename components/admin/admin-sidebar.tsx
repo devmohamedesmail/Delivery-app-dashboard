@@ -31,6 +31,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
     const { t , i18n} = useTranslation();
     const { settings } = useSetting();
     const { user } = useAuth();
+    console.log(user)
 
 
 
@@ -38,63 +39,75 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
         {
             title: t('sidebar.dashboard'),
             href: '/admin',
-            icon: LayoutDashboard
+            icon: LayoutDashboard,
+            role: ["admin"]
         },
 
         {
             title: t('sidebar.settings'),
             href: '/admin/settings',
-            icon: Settings
+            icon: Settings,
+            role: ["admin"]
         },
         {
             title: t('sidebar.areas'),
             href: '/admin/areas',
-            icon: MapPin
+            icon: MapPin,
+            role: ["admin", "delivery_man"]
         },
         {
             title: t('sidebar.places'),
             href: '/admin/places',
-            icon: MapPin
+            icon: MapPin,
+            role: ["admin", "delivery_man"]
         },
         {
             title: t('sidebar.store_types'),
             href: '/admin/store-types',
-            icon: MapPin
+            icon: MapPin,
+            role: ["admin"]
         },
         {
             title: t('sidebar.banners'),
             href: '/admin/banners',
-            icon: ImageIcon
+            icon: ImageIcon,
+            role: ["admin"]
         },
         {
             title: t('sidebar.stores'),
             href: '/admin/stores',
-            icon: Store
+            icon: Store,
+            role: ["admin"]
         },
         {
             title: t('sidebar.categories'),
             href: '/admin/categories',
-            icon: Store
+            icon: Store,
+            role: ["admin"]
         },
         {
             title: t('sidebar.orders'),
             href: '/admin/orders',
-            icon: Store
+            icon: Store,
+            role: ["admin", "delivery_man"]
         },
         {
             title: t('sidebar.users'),
             href: '/admin/users',
-            icon: Users
+            icon: Users,
+            role: ["admin"]
         },
         {
             title: t('sidebar.roles'),
             href: '/admin/roles',
-            icon: Users
+            icon: Users,
+            role: ["admin"]
         },
         {
             title: t('sidebar.notifications'),
             href: '/admin/notifications',
-            icon: Users
+            icon: Users,
+            role: ["admin"]
         }
     ]
 
@@ -139,7 +152,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                 {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto px-3 py-4">
                     <ul className="space-y-1">
-                        {navigationItems.map((item) => {
+                        {navigationItems.filter(item => item.role.includes(user?.role?.role)).map((item) => {
                             const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href))
                             const Icon = item.icon
 

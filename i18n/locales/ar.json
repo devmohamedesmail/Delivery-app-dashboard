@@ -30,7 +30,9 @@
     "selectImage": " اختر صورة ",
     "creating": "جاري الإنشاء...",
     "noData": "لا توجد بيانات",
-     "settings":"  الاعدادات "
+    "settings":"  الاعدادات ",
+    "entries":"المدخلات",
+    "to":"الى"
   },
   "sidebar": {
     "dashboard": "لوحة التحكم",

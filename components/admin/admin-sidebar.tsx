@@ -11,12 +11,15 @@ import {
     FileText,
     Store,
     MapPin,
-    Image as ImageIcon
+    Image as ImageIcon,
+    LandPlot
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslation } from 'react-i18next'
 import { useSetting } from '@/hooks/useSetting'
 import { useAuth } from '@/hooks/useAuth'
+import SidebarFooter from '../ui/sidebar-footer'
+import SidebarLogoSection from '../ui/sidebar-logo-section'
 
 interface AdminSidebarProps {
     isCollapsed: boolean
@@ -52,7 +55,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
         {
             title: t('sidebar.areas'),
             href: '/admin/areas',
-            icon: MapPin,
+            icon: LandPlot,
             role: ["admin", "delivery_man"]
         },
         {
@@ -130,24 +133,9 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                     isMobileOpen ? 'translate-x-0' : `${i18n.language === 'ar' ? 'translate-x-full' : '-translate-x-full'} lg:translate-x-0`
                 )}
             >
-                {/* Logo Section */}
-                <div className="flex h-16 items-center justify-between border-b border-border px-6">
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg ">
-                            {settings?.logo && (
-                                <img src={settings?.logo} alt="Logo" width={40} height={40} />
-                            )}
-                        </div>
-                        {/* <Logo /> */}
-                        
-                        {!isCollapsed && (
-                            <div className="flex flex-col">
-                                <span className="text-lg font-bold text-foreground">{settings?.name_en}</span>
-                                <span className="text-xs text-muted-foreground">{settings?.name_ar}</span>
-                            </div>
-                        )}
-                    </div>
-                </div>
+               
+                <SidebarLogoSection isCollapsed={isCollapsed} />
+                
 
                 {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto px-3 py-4">
@@ -179,23 +167,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                     </ul>
                 </nav>
 
-                {/* Footer */}
-                <div className="border-t border-border p-4">
-                    <div className={cn(
-                        'flex items-center gap-3 rounded-lg bg-muted/50 p-3',
-                        isCollapsed && 'justify-center'
-                    )}>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                            {user?.name?.charAt(0)}
-                        </div>
-                        {!isCollapsed && (
-                            <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground truncate">{user?.name}</p>
-                                <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <SidebarFooter isCollapsed={isCollapsed} />
             </aside>
         </>
     )

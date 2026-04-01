@@ -30,7 +30,9 @@
     "selectImage": "Select Image",
     "creating": "Creating...",
     "noData": "No data available",
-    "settings":"Settings"
+    "settings":"Settings",
+    "entries":"entries",
+    "to":"to"
   },
   "sidebar": {
     "dashboard": "Dashboard",

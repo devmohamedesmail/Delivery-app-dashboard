@@ -152,7 +152,7 @@ export function AdminSidebar({ isCollapsed, isMobileOpen, onClose }: AdminSideba
                 {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto px-3 py-4">
                     <ul className="space-y-1">
-                        {navigationItems.filter(item => item.role.includes(user?.role?.role)).map((item) => {
+                        {navigationItems.filter(item => item.role.includes(user?.role?.role as string)).map((item) => {
                             const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href))
                             const Icon = item.icon
 

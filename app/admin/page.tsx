@@ -5,12 +5,16 @@ import { useQuery } from '@tanstack/react-query'
 import OrdersController from '@/controllers/orders-controller'
 import DashboardState from '@/components/ui/dashboard-state'
 import { useTranslation } from 'react-i18next'
+import useAreas from '@/hooks/areas/useAreas'
+import usePlaces from '@/hooks/places/usePlaces'
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
 
-
-
+const {data:areas, isLoading:areasLoading,error:areasError, refetch:areasRefetch}=useAreas()
+const {data:places, isLoading:placesLoading,error:placesError, refetch:placesRefetch}=usePlaces()
+console.log("areas", areas)
+console.log("places", places)
   const { data, isLoading } = useQuery({
     queryKey: ['orders'],
     queryFn: () => OrdersController.getOrders(),
@@ -34,26 +38,7 @@ export default function AdminDashboard() {
           icon={<ShoppingCart />}
           color={'text-blue-500'}
         />
-        {/* {stats.map((stat) => {
-          const Icon = stat.icon
-          return (
-            <div
-              key={stat.title}
-              className="rounded-lg border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                  <p className="text-2xl font-bold text-foreground mt-2">{stat.value}</p>
-                  <p className="text-sm text-green-500 mt-1">{stat.change} from last month</p>
-                </div>
-                <div className={`rounded-full bg-muted p-3 ${stat.color}`}>
-                  <Icon className="h-6 w-6" />
-                </div>
-              </div>
-            </div>
-          )
-        })} */}
+       
       </div>
 
       {/* Recent Activity */}

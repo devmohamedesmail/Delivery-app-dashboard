@@ -22,9 +22,9 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function useAreas(
-  page: number,
-  search: string,
-  placeFilter: string
+ page: number = 1,
+  search: string = "",
+  placeFilter: string = "all"
 ) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['areas', page, search, placeFilter],

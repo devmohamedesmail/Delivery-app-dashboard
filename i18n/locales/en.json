@@ -536,7 +536,12 @@
       "ownerSelect": "Please select a store owner",
       "deliveryTimeMin": "Delivery time cannot be negative",
       "deliveryFeeMin": "Delivery fee cannot be negative"
-    }
+    },
+    "activeStores":"Active Stores",
+    "verifiedStores":"Verified Stores",
+    "featuredStores":"Featured Stores"
+    
+
   },
   "pages": {
     "add_new_page": "Add New Page",

@@ -25,30 +25,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 import StoreController, { Store as StoreType } from '@/controllers/stores-controller'
 import StoreTypeController from '@/controllers/store-types-controller'
+import StoresStat from '@/components/stores/stores-stat'
+import StoresHeader from '@/components/stores/stores-header'
+import StoresSearch from '@/components/stores/stores-search'
+import StoresTable from '@/components/stores/stores-table'
+import StoreCreateDialog from '@/components/stores/store-create-dialog'
+import StoreUpdateDialog from '@/components/stores/store-update-dialog'
+import StoreDeleteDialog from '@/components/stores/store-delete-dialog'
 
-/* ─────────────────── helpers ─────────────────── */
 
-function StoreImage({ src, alt, className }: { src?: string | null; alt: string; className?: string }) {
-    if (!src) {
-        return (
-            <div className={`flex items-center justify-center bg-muted rounded-md ${className ?? 'w-10 h-10'}`}>
-                <Store className="h-4 w-4 text-muted-foreground" />
-            </div>
-        )
-    }
-    return (
-        <Image
-            src={src}
-            alt={alt}
-            width={40}
-            height={40}
-            unoptimized
-            className={`object-cover rounded-md ${className ?? 'w-10 h-10'}`}
-        />
-    )
-}
-
-/* ─────────────────── page ─────────────────── */
 
 export default function StoresPage() {
     const { t } = useTranslation()
@@ -294,6 +279,7 @@ export default function StoresPage() {
                     )}
                 </div>
 
+
                 {/* Store Type */}
                 <div className="space-y-1">
                     <Label>{t('stores.storeType')} <span className="text-destructive">*</span></Label>
@@ -396,283 +382,77 @@ export default function StoresPage() {
         <div className="p-6 space-y-6">
 
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                        <Store className="h-6 w-6 text-primary" />
-                        {t('stores.title')}
-                    </h1>
-                    <p className="text-sm text-muted-foreground mt-1">{t('stores.subtitle')}</p>
-                </div>
-                <Button onClick={() => { setIsCreateOpen(true); createFormik.resetForm(); setLogoPreview(null); setBannerPreview(null) }} className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('stores.add')}
-                </Button>
-            </div>
+            <StoresHeader
+                setIsCreateOpen={setIsCreateOpen}
+                createFormik={createFormik}
+                setLogoPreview={setLogoPreview}
+                setBannerPreview={setBannerPreview}
+            />
 
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[
-                    { label: t('stores.totalStores'), value: total, color: 'text-primary', icon: <Store className="h-5 w-5" /> },
-                    { label: t('stores.activeStores'), value: activeCount, color: 'text-emerald-500', icon: <ToggleRight className="h-5 w-5" /> },
-                    { label: t('stores.verifiedStores'), value: verifiedCount, color: 'text-blue-500', icon: <ShieldCheck className="h-5 w-5" /> },
-                    { label: t('stores.featuredStores'), value: featuredCount, color: 'text-amber-500', icon: <Star className="h-5 w-5" /> },
-                ].map((stat) => (
-                    <Card key={stat.label} className="border border-border">
-                        <CardContent className="p-4 flex items-center gap-3">
-                            <div className={`${stat.color} opacity-80`}>{stat.icon}</div>
-                            <div>
-                                <p className="text-xs text-muted-foreground">{stat.label}</p>
-                                <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
+            <StoresStat
+                total={total}
+                activeCount={activeCount}
+                verifiedCount={verifiedCount}
+                featuredCount={featuredCount}
+            />
 
             {/* Search */}
-            <div className="relative max-w-sm">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                    className="pl-9 pr-9"
-                    placeholder={t('stores.searchPlaceholder')}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                {searchQuery && (
-                    <button
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                        onClick={() => setSearchQuery('')}
-                    >
-                        <X className="h-4 w-4" />
-                    </button>
-                )}
-            </div>
+            <StoresSearch
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+            />
 
             {/* Table */}
-            <div className="rounded-lg border border-border overflow-hidden">
-                <Table>
-                    <TableHeader>
-                        <TableRow className="bg-muted/50">
-                            <TableHead className="w-12">ID</TableHead>
-                            <TableHead>{t('stores.store')}</TableHead>
-                            <TableHead>{t('stores.storeType')}</TableHead>
-                            <TableHead>{t('stores.owner')}</TableHead>
-                            <TableHead>{t('stores.phone')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isActive')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isVerified')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isFeatured')}</TableHead>
-                            <TableHead className="text-right">{t('stores.actions')}</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {isLoading ? (
-                            <TableRow>
-                                <TableCell colSpan={9} className="h-32 text-center text-muted-foreground">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                                        Loading...
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ) : filtered.length === 0 ? (
-                            <TableRow>
-                                <TableCell colSpan={9} className="h-40 text-center">
-                                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                                        <Store className="h-10 w-10 opacity-30" />
-                                        <p className="font-medium">
-                                            {searchQuery ? t('stores.noResults') : t('stores.noStoresFound')}
-                                        </p>
-                                        <p className="text-sm">
-                                            {searchQuery ? t('stores.tryDifferentSearch') : t('stores.noStoresSubtitle')}
-                                        </p>
-                                        {searchQuery && (
-                                            <Button variant="ghost" size="sm" onClick={() => setSearchQuery('')}>
-                                                <X className="h-4 w-4 mr-1" /> {t('stores.clearSearch')}
-                                            </Button>
-                                        )}
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ) : (
-                            filtered.map((store) => (
-                                <TableRow key={store.id} className="hover:bg-muted/30">
-                                    <TableCell className="text-muted-foreground text-sm">{store.id}</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-3">
-                                            <StoreImage src={store.logo} alt={store.name} />
-                                            <div>
-                                                <p className="font-medium text-foreground">{store.name}</p>
-                                                {store.address && (
-                                                    <p className="text-xs text-muted-foreground truncate max-w-48">{store.address}</p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="text-sm text-muted-foreground">
-                                        {store.storeType?.name_en ?? '—'}
-                                    </TableCell>
-                                    <TableCell className="text-sm text-muted-foreground">
-                                        {store.user?.name ?? '—'}
-                                    </TableCell>
-                                    <TableCell className="text-sm text-muted-foreground">
-                                        {store.phone ?? '—'}
-                                    </TableCell>
-                                    {/* Active */}
-                                    <TableCell className="text-center">
-                                        <button
-                                            onClick={() => toggleStatusMutation.mutate(store.id)}
-                                            disabled={toggleStatusMutation.isPending}
-                                            title={store.is_active ? t('stores.active') : t('stores.inactive')}
-                                        >
-                                            {store.is_active
-                                                ? <ToggleRight className="h-5 w-5 text-emerald-500 mx-auto" />
-                                                : <ToggleLeft className="h-5 w-5 text-muted-foreground mx-auto" />}
-                                        </button>
-                                    </TableCell>
-                                    {/* Verified */}
-                                    <TableCell className="text-center">
-                                        <button
-                                            onClick={() => toggleVerifiedMutation.mutate(store.id)}
-                                            disabled={toggleVerifiedMutation.isPending}
-                                            title={store.is_verified ? t('stores.verified') : t('stores.unverified')}
-                                        >
-                                            {store.is_verified
-                                                ? <ShieldCheck className="h-5 w-5 text-blue-500 mx-auto" />
-                                                : <ShieldOff className="h-5 w-5 text-muted-foreground mx-auto" />}
-                                        </button>
-                                    </TableCell>
-                                    {/* Featured */}
-                                    <TableCell className="text-center">
-                                        <button
-                                            onClick={() => toggleFeaturedMutation.mutate(store.id)}
-                                            disabled={toggleFeaturedMutation.isPending}
-                                            title={store.is_featured ? t('stores.featured') : t('stores.unfeatured')}
-                                        >
-                                            <Star className={`h-5 w-5 mx-auto ${store.is_featured ? 'text-amber-500 fill-amber-500' : 'text-muted-foreground'}`} />
-                                        </button>
-                                    </TableCell>
-                                    <TableCell className="text-right">
-                                        <div className="flex items-center justify-end gap-2">
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className="h-8 w-8 p-0 text-muted-foreground hover:text-primary"
-                                                onClick={() => openEdit(store)}
-                                            >
-                                                <Pencil className="h-4 w-4" />
-                                            </Button>
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
-                                                onClick={() => openDelete(store)}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            ))
-                        )}
-                    </TableBody>
-                </Table>
-            </div>
+            <StoresTable
+                isLoading={isLoading}
+                filtered={filtered}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                toggleStatusMutation={toggleStatusMutation}
+                toggleVerifiedMutation={toggleVerifiedMutation}
+                toggleFeaturedMutation={toggleFeaturedMutation}
+                openEdit={openEdit}
+                openDelete={openDelete}
+            />
 
             {/* ── Create Dialog ── */}
-            <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-                <DialogContent className="max-w-lg">
-                    <DialogHeader>
-                        <DialogTitle>{t('stores.add')}</DialogTitle>
-                        <DialogDescription>{t('stores.addStoreSubtitle') || t('stores.subtitle')}</DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={createFormik.handleSubmit}>
-                        <StoreForm
-                            formik={createFormik}
-                            logoPreviewUrl={logoPreview}
-                            bannerPreviewUrl={bannerPreview}
-                            onLogoChange={(e) => handleFileChange(e, 'logo', createFormik, setLogoPreview)}
-                            onBannerChange={(e) => handleFileChange(e, 'banner', createFormik, setBannerPreview)}
-                        />
-                        <div className="flex justify-end gap-2 mt-4">
-                            <Button type="button" variant="outline" onClick={() => setIsCreateOpen(false)}>
-                                {t('common.cancel') || 'Cancel'}
-                            </Button>
-                            <Button type="submit" disabled={createMutation.isPending}>
-                                {createMutation.isPending ? (
-                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                                ) : (
-                                    <><Plus className="h-4 w-4 mr-1" /> {t('stores.createStore')}</>
-                                )}
-                            </Button>
-                        </div>
-                    </form>
-                </DialogContent>
-            </Dialog>
+            <StoreCreateDialog
+                storeTypes={storeTypes}
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                createFormik={createFormik}
+                createMutation={createMutation}
+                logoPreview={logoPreview}
+                bannerPreview={bannerPreview}
+                handleFileChange={handleFileChange}
+                setLogoPreview={setLogoPreview}
+                setBannerPreview={setBannerPreview}
+            />
 
             {/* ── Edit Dialog ── */}
-            <Dialog open={isEditOpen} onOpenChange={(v) => { setIsEditOpen(v); if (!v) { setSelectedStore(null); setLogoPreview(null); setBannerPreview(null) } }}>
-                <DialogContent className="max-w-lg">
-                    <DialogHeader>
-                        <DialogTitle>{t('stores.editStore')}</DialogTitle>
-                        <DialogDescription>{selectedStore?.name}</DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={editFormik.handleSubmit}>
-                        <StoreForm
-                            formik={editFormik}
-                            logoPreviewUrl={logoPreview}
-                            bannerPreviewUrl={bannerPreview}
-                            existingLogo={selectedStore?.logo}
-                            existingBanner={selectedStore?.banner}
-                            onLogoChange={(e) => handleFileChange(e, 'logo', editFormik, setLogoPreview)}
-                            onBannerChange={(e) => handleFileChange(e, 'banner', editFormik, setBannerPreview)}
-                        />
-                        <div className="flex justify-end gap-2 mt-4">
-                            <Button type="button" variant="outline" onClick={() => setIsEditOpen(false)}>
-                                {t('common.cancel') || 'Cancel'}
-                            </Button>
-                            <Button type="submit" disabled={updateMutation.isPending}>
-                                {updateMutation.isPending ? (
-                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                                ) : (
-                                    <>{t('stores.updateStore')}</>
-                                )}
-                            </Button>
-                        </div>
-                    </form>
-                </DialogContent>
-            </Dialog>
+            <StoreUpdateDialog
+                isEditOpen={isEditOpen}
+                setIsEditOpen={setIsEditOpen}
+                selectedStore={selectedStore}
+                editFormik={editFormik}
+                updateMutation={updateMutation}
+                logoPreview={logoPreview}
+                bannerPreview={bannerPreview}
+                handleFileChange={handleFileChange}
+                storeTypes={storeTypes}
+                setSelectedStore={setSelectedStore}
+                setLogoPreview={setLogoPreview}
+                setBannerPreview={setBannerPreview}
+            />
 
             {/* ── Delete Dialog ── */}
-            <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-                <DialogContent className="max-w-md">
-                    <DialogHeader>
-                        <DialogTitle>{t('stores.deleteConfirm')}</DialogTitle>
-                        <DialogDescription>
-                            {t('stores.deleteConfirmMessage')}
-                            {selectedStore && (
-                                <span className="block mt-1 font-semibold text-foreground">"{selectedStore.name}"</span>
-                            )}
-                        </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                        <Button variant="outline" onClick={() => setIsDeleteOpen(false)}>
-                            {t('common.cancel') || 'Cancel'}
-                        </Button>
-                        <Button
-                            variant="destructive"
-                            onClick={() => selectedStore && deleteMutation.mutate(selectedStore.id)}
-                            disabled={deleteMutation.isPending}
-                        >
-                            {deleteMutation.isPending ? (
-                                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                            ) : (
-                                <><Trash2 className="h-4 w-4 mr-1" /> {t('common.delete') || 'Delete'}</>
-                            )}
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+            <StoreDeleteDialog
+                isDeleteOpen={isDeleteOpen}
+                setIsDeleteOpen={setIsDeleteOpen}
+                selectedStore={selectedStore}
+                deleteMutation={deleteMutation}
+            />
         </div>
     )
 }

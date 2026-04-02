@@ -5,6 +5,7 @@ import { Store } from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import { Pencil, Trash2, ToggleLeft, ToggleRight, ShieldCheck, ShieldOff,X,Star } from 'lucide-react'
 import StoreImage from './store-image'
+import Loading from '../ui/loading'
 
 export default function StoresTable({isLoading, filtered, searchQuery, setSearchQuery, toggleStatusMutation, toggleVerifiedMutation, toggleFeaturedMutation, openEdit, openDelete}: {isLoading: boolean, filtered: any[], searchQuery: string, setSearchQuery: (query: string) => void, toggleStatusMutation: any, toggleVerifiedMutation: any, toggleFeaturedMutation: any, openEdit: (store: any) => void, openDelete: (store: any) => void}) {
     const { t } = useTranslation()
@@ -13,14 +14,14 @@ export default function StoresTable({isLoading, filtered, searchQuery, setSearch
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-muted/50">
-                            <TableHead className="w-12">ID</TableHead>
-                            <TableHead>{t('stores.store')}</TableHead>
-                            <TableHead>{t('stores.storeType')}</TableHead>
-                            <TableHead>{t('stores.owner')}</TableHead>
-                            <TableHead>{t('stores.phone')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isActive')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isVerified')}</TableHead>
-                            <TableHead className="text-center">{t('stores.isFeatured')}</TableHead>
+                            <TableHead className="w-12 text-start">ID</TableHead>
+                            <TableHead className='text-start'>{t('stores.store')}</TableHead>
+                            <TableHead className='text-start'>{t('stores.storeType')}</TableHead>
+                            <TableHead className='text-start'>{t('stores.owner')}</TableHead>
+                            <TableHead className='text-start'>{t('stores.phone')}</TableHead>
+                            <TableHead className="text-start">{t('stores.isActive')}</TableHead>
+                            <TableHead className="text-start">{t('stores.isVerified')}</TableHead>
+                            <TableHead className="text-start">{t('stores.isFeatured')}</TableHead>
                             <TableHead className="text-right">{t('stores.actions')}</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -28,10 +29,7 @@ export default function StoresTable({isLoading, filtered, searchQuery, setSearch
                         {isLoading ? (
                             <TableRow>
                                 <TableCell colSpan={9} className="h-32 text-center text-muted-foreground">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                                        Loading...
-                                    </div>
+                                    <Loading />
                                 </TableCell>
                             </TableRow>
                         ) : filtered.length === 0 ? (

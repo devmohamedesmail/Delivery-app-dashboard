@@ -517,7 +517,13 @@
     },
      "activeStores":"المتاجر النشطة",
     "verifiedStores":"المتاجر الموثقة",
-    "featuredStores":"المتاجر المميزة"
+    "featuredStores":"المتاجر المميزة",
+    "edit":"تعديل",
+    "delete":"حذف",
+    "view":"عرض",
+    "toggleStatus":"تبديل الحالة",
+    "toggleVerified":"تبديل التوثيق",
+    "toggleFeatured":"تبديل التمييز"
   },
   "pages": {
     "add_new_page": "إضافة صفحة جديدة",

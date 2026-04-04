@@ -539,7 +539,14 @@
     },
     "activeStores":"Active Stores",
     "verifiedStores":"Verified Stores",
-    "featuredStores":"Featured Stores"
+    "featuredStores":"Featured Stores",
+    "edit":"Edit",
+    "delete":"Delete",
+    "view":"View",
+    "toggleStatus":"Toggle Status",
+    "toggleVerified":"Toggle Verified",
+    "toggleFeatured":"Toggle Featured"
+    
     
 
   },

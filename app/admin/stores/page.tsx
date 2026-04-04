@@ -79,6 +79,9 @@ export default function StoresPage() {
             queryClient.invalidateQueries({ queryKey: ['stores'] })
             toast.success(t('stores.toggleStatusSuccess'))
         },
+        onError: (error) => {
+            toast.error(t('stores.toggleStatusError'))
+        },
     })
 
     const toggleVerifiedMutation = useMutation({

@@ -515,7 +515,7 @@
       "deliveryTimeMin": "وقت التوصيل لا يمكن أن يكون سالباً",
       "deliveryFeeMin": "رسوم التوصيل لا يمكن أن تكون سالبة"
     },
-     "activeStores":"المتاجر النشطة",
+    "activeStores":"المتاجر النشطة",
     "verifiedStores":"المتاجر الموثقة",
     "featuredStores":"المتاجر المميزة",
     "edit":"تعديل",

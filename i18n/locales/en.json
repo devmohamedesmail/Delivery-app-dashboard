@@ -393,6 +393,8 @@
     "primaryColor": "Primary Color",
     "cardColor": "Card Color",
     "borderColor": "Border Color",
+    "vendor-version":"Vendor Version",
+    "vendor-version-placeholder":"Enter vendor version",
     "dataTypes": {
       "string": "String",
       "number": "Number",

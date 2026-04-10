@@ -393,6 +393,8 @@
     "primaryColor": "اللون الأساسي",
     "cardColor": "لون البطاقة",
     "borderColor": "لون الحدود",
+    "vendor-version": "نسخة البائع",
+    "vendor-version-placeholder": "أدخل نسخة البائع",
     "dataTypes": {
       "string": "نص",
       "number": "رقم",

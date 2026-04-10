@@ -91,6 +91,7 @@ export default function SettingsPage() {
             name_en: '',
             name_ar: '',
             version: '',
+            vendor_version: '',
             description: '',
             url: '',
             email: '',
@@ -110,7 +111,7 @@ export default function SettingsPage() {
             maintenance_mode: false,
             maintenance_message: '',
             order_extra_ratio: '',
-           
+
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -179,6 +180,7 @@ export default function SettingsPage() {
                     name_en: setting.name_en || '',
                     name_ar: setting.name_ar || '',
                     version: setting.version || '',
+                    vendor_version: setting.vendor_version || '',
                     description: setting.description || '',
                     url: setting.url || '',
                     email: setting.email || '',
@@ -344,6 +346,29 @@ export default function SettingsPage() {
                                             <p className="text-sm text-red-500 flex items-center gap-1">
                                                 <AlertCircle className="w-4 h-4" />
                                                 {formik.errors.version}
+                                            </p>
+                                        )}
+                                    </div>
+
+
+                                    <div className="space-y-2">
+                                        <Label htmlFor="vendor_version" className="text-sm font-medium">
+                                            {t('settings.vendor-version')}
+                                        </Label>
+                                        <Input
+                                            id="vendor_version"
+                                            name="vendor_version"
+                                            type="text"
+                                            placeholder={t('settings.versionPlaceholder')}
+                                            value={formik.values.vendor_version}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            className="h-11"
+                                        />
+                                        {formik.touched.vendor_version && formik.errors.vendor_version && (
+                                            <p className="text-sm text-red-500 flex items-center gap-1">
+                                                <AlertCircle className="w-4 h-4" />
+                                                {formik.errors.vendor_version}
                                             </p>
                                         )}
                                     </div>
@@ -854,7 +879,7 @@ export default function SettingsPage() {
                     </TabsContent>
 
 
- <TabsContent value="order" className="space-y-6">
+                    <TabsContent value="order" className="space-y-6">
                         <Card className="border-slate-200 dark:border-slate-800 shadow-sm">
                             <CardHeader>
                                 <CardTitle className="text-xl">{t('settings.orderInfo')}</CardTitle>
@@ -879,20 +904,20 @@ export default function SettingsPage() {
                                         />
                                     </div>
 
-                                   
 
-                                   
 
-                                
+
+
+
 
                                 </div>
 
-                            
+
                             </CardContent>
                         </Card>
                     </TabsContent>
                     {/* Colors Tab */}
-               
+
                 </Tabs>
 
                 {/* Submit Button */}

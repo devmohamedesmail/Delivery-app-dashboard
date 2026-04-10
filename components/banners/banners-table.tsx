@@ -5,7 +5,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Pencil, Trash2, Search, Image as ImageLucide } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Banner } from '@/controllers/banners-controller';
+import { Banner } from '@/types/banner';
 import BannerThumbnail from './banner-thumbnail';
 
 export default function BannersTable({ isLoading, filteredItems, handleEdit, handleDelete, deleteMutation, searchQuery, setSearchQuery }: {

@@ -6,18 +6,12 @@ import BannerController from '@/controllers/banners-controller';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { BannerFormValues } from '@/types/banner';
 
-interface BannerFormValues {
-    title: string;
-    slug: string;
-    content: string;
-    is_published: boolean;
-    image: File | null;
-}
 export default function useCreateBanner() {
     const queryClient = useQueryClient();
     const { t } = useTranslation();
-     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
     const createMutation = useMutation({
         mutationFn: BannerController.createBanner,
         onSuccess: () => {
@@ -32,36 +26,38 @@ export default function useCreateBanner() {
     });
 
 
-      const validationSchema = Yup.object({
-            title: Yup.string().required(t('banners.validation.titleRequired')),
-            slug: Yup.string()
-                .required(t('banners.validation.slugRequired'))
-                .matches(/^[a-z0-9-]+$/, t('banners.validation.slugFormat')),
-            content: Yup.string(),
-            is_published: Yup.boolean(),
-            image: Yup.mixed().nullable(),
-        });
-    
-        /* ================= CREATE FORMIK ================= */
-        const createFormik = useFormik<BannerFormValues>({
-            initialValues: { title: '', slug: '', content: '', is_published: true, image: null },
-            validationSchema,
-            onSubmit: (values) => {
-                createMutation.mutate({
-                    title: values.title,
-                    slug: values.slug,
-                    content: values.content || undefined,
-                    is_published: values.is_published,
-                    image: values.image ?? undefined,
-                });
-            },
-        });
-  return {
+    const validationSchema = Yup.object({
+        title: Yup.string().required(t('banners.validation.titleRequired')),
+        slug: Yup.string()
+            .required(t('banners.validation.slugRequired'))
+            .matches(/^[a-z0-9-]+$/, t('banners.validation.slugFormat')),
+        content: Yup.string(),
+        is_published: Yup.boolean(),
+        image: Yup.mixed().nullable(),
+        link: Yup.string().nullable(),
+    });
+
+    /* ================= CREATE FORMIK ================= */
+    const createFormik = useFormik<BannerFormValues>({
+        initialValues: { title: '', slug: '', content: '', is_published: true, image: null, link: null },
+        validationSchema,
+        onSubmit: (values) => {
+            createMutation.mutate({
+                title: values.title,
+                slug: values.slug,
+                content: values.content || undefined,
+                is_published: values.is_published,
+                image: values.image ?? undefined,
+                link: values.link || undefined,
+            });
+        },
+    });
+    return {
         createFormik,
         isCreateOpen,
         setIsCreateOpen,
         createMutation,
         validationSchema,
-        
-  }
+
+    }
 }

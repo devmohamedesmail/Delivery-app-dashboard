@@ -797,6 +797,8 @@
     "updateSuccess": "تم تحديث البنر بنجاح",
     "deleteSuccess": "تم حذف البنر بنجاح",
     "deleteConfirmMessage": "هل أنت متأكد من حذف هذا البنر؟ لا يمكن التراجع عن هذا الإجراء.",
+    "link": "الرابط",
+    "linkPlaceholder": "أدخل رابط البنر",
     "validation": {
       "titleRequired": "العنوان مطلوب",
       "slugRequired": "الرابط المختصر مطلوب",

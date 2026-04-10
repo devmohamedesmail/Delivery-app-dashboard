@@ -786,6 +786,8 @@
     "updateSuccess": "Banner updated successfully",
     "deleteSuccess": "Banner deleted successfully",
     "deleteConfirmMessage": "Are you sure you want to delete this banner? This cannot be undone.",
+    "link": "Link",
+    "linkPlaceholder": "Enter banner link",
     "validation": {
       "titleRequired": "Title is required",
       "slugRequired": "Slug is required",

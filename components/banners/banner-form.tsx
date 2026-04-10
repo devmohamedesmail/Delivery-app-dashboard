@@ -7,23 +7,25 @@ import { Button } from '../ui/button';
 import { DialogFooter } from '../ui/dialog';
 import { ImageIcon } from 'lucide-react';
 import ImagePreview from './image-preview';
+import { BannerFormValues, BannerFormProps } from '@/types/banner';
 
 
-interface BannerFormValues {
-    title: string;
-    slug: string;
-    content: string;
-    is_published: boolean;
-    image: File | null;
-}
+// interface BannerFormValues {
+//     title: string;
+//     slug: string;
+//     content: string;
+//     is_published: boolean;
+//     image: File | null;
+//     link: string | null;
+// }
 
-interface BannerFormProps {
-    formik: ReturnType<typeof useFormik<BannerFormValues>>;
-    existingImageUrl?: string | null;
-    isPending: boolean;
-    submitLabel: string;
-    onCancel: () => void;
-}
+// interface BannerFormProps {
+//     formik: ReturnType<typeof useFormik<BannerFormValues>>;
+//     existingImageUrl?: string | null;
+//     isPending: boolean;
+//     submitLabel: string;
+//     onCancel: () => void;
+// }
 
 
 function toSlug(str: string): string {
@@ -35,21 +37,21 @@ function toSlug(str: string): string {
         .replace(/-+/g, '-');
 }
 export default function BannerForm({ formik, existingImageUrl, isPending, submitLabel, onCancel }: BannerFormProps) {
-   const { t } = useTranslation();
-      const fileInputRef = useRef<HTMLInputElement>(null);
-  
-      const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          const val = e.target.value;
-          formik.setFieldValue('title', val);
-          // Auto-fill slug only if slug is still empty or matches previous auto-gen
-          if (!formik.touched.slug || formik.values.slug === toSlug(formik.values.title)) {
-              formik.setFieldValue('slug', toSlug(val));
-          }
-      };
-  
-  
+    const { t } = useTranslation();
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        formik.setFieldValue('title', val);
+        // Auto-fill slug only if slug is still empty or matches previous auto-gen
+        if (!formik.touched.slug || formik.values.slug === toSlug(formik.values.title)) {
+            formik.setFieldValue('slug', toSlug(val));
+        }
+    };
+
+
     return (
-    <form onSubmit={formik.handleSubmit} className="space-y-5">
+        <form onSubmit={formik.handleSubmit} className="space-y-5">
 
             {/* Title */}
             <div className="space-y-1">
@@ -98,6 +100,23 @@ export default function BannerForm({ formik, existingImageUrl, isPending, submit
                 />
             </div>
 
+
+
+            <div className="space-y-1">
+                <Label htmlFor="link">{t('banners.link')}</Label>
+                <Input
+                    id="link"
+                    name="link"
+                    placeholder={t('banners.linkPlaceholder')}
+                    value={formik.values.link ?? ""}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.link && formik.errors.link && (
+                    <p className="text-xs text-red-500">{formik.errors.link}</p>
+                )}
+            </div>
+
             {/* Published toggle */}
             <div className="flex items-center gap-3">
                 <input
@@ -144,5 +163,5 @@ export default function BannerForm({ formik, existingImageUrl, isPending, submit
                 </Button>
             </DialogFooter>
         </form>
-  )
+    )
 }

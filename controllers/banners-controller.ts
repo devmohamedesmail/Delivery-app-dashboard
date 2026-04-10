@@ -1,35 +1,39 @@
 import { config } from "@/constants/config";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import { Banner, CreateBannerData, UpdateBannerData } from "@/types/banner";
 
 /* ========================= TYPES ========================= */
 
-export interface Banner {
-    id: number;
-    title: string;
-    slug: string;
-    content?: string | null;
-    is_published: boolean;
-    image?: string | null;
-    createdAt?: string;
-    updatedAt?: string;
-}
+// export interface Banner {
+//     id: number;
+//     title: string;
+//     slug: string;
+//     content?: string | null;
+//     is_published: boolean;
+//     image?: string | null;
+//     createdAt?: string;
+//     updatedAt?: string;
+//     link?: string | null;
+// }
 
-export interface CreateBannerData {
-    title: string;
-    slug: string;
-    content?: string;
-    is_published?: boolean;
-    image?: File;
-}
+// export interface CreateBannerData {
+//     title: string;
+//     slug: string;
+//     content?: string;
+//     is_published?: boolean;
+//     image?: File;
+//     link?: string;
+// }
 
-export interface UpdateBannerData {
-    title?: string;
-    slug?: string;
-    content?: string;
-    is_published?: boolean;
-    image?: File;
-}
+// export interface UpdateBannerData {
+//     title?: string;
+//     slug?: string;
+//     content?: string;
+//     is_published?: boolean;
+//     image?: File;
+//     link?: string;
+// }
 
 /* ========================= HELPERS ========================= */
 
@@ -45,6 +49,7 @@ function buildFormData(data: CreateBannerData | UpdateBannerData): FormData {
     if (data.content !== undefined) formData.append('content', data.content);
     if (data.is_published !== undefined) formData.append('is_published', String(data.is_published));
     if (data.image) formData.append('image', data.image);
+    if (data.link !== undefined) formData.append('link', data.link);
     return formData;
 }
 

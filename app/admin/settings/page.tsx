@@ -111,6 +111,18 @@ export default function SettingsPage() {
             maintenance_mode: false,
             maintenance_message: '',
             order_extra_ratio: '',
+            user_min_version: '',
+            user_force_update: false,
+            user_update_title: '',
+            user_update_message: '',
+            user_android_url: '',
+            user_ios_url: '',
+            vendor_min_version: '',
+            vendor_force_update: false,
+            vendor_update_title: '',
+            vendor_update_message: '',
+            vendor_android_url: '',
+            vendor_ios_url: '',
 
         },
         validationSchema,
@@ -200,6 +212,19 @@ export default function SettingsPage() {
                     maintenance_mode: setting.maintenance_mode || false,
                     maintenance_message: setting.maintenance_message || '',
                     order_extra_ratio: setting.order_extra_ratio || '',
+
+                    user_min_version: setting.user_min_version || '',
+                    user_force_update: setting.user_force_update || false,
+                    user_update_title: setting.user_update_title || '',
+                    user_update_message: setting.user_update_message || '',
+                    user_android_url: setting.user_android_url || '',
+                    user_ios_url: setting.user_ios_url || '',
+                    vendor_min_version: setting.vendor_min_version || '',
+                    vendor_force_update: setting.vendor_force_update || false,
+                    vendor_update_title: setting.vendor_update_title || '',
+                    vendor_update_message: setting.vendor_update_message || '',
+                    vendor_android_url: setting.vendor_android_url || '',
+                    vendor_ios_url: setting.vendor_ios_url || '',
                 })
                 setLogoPreview(setting.logo)
                 setBannerPreview(setting.banner)
@@ -263,13 +288,14 @@ export default function SettingsPage() {
 
             <form onSubmit={formik.handleSubmit}>
                 <Tabs defaultValue="general" className="space-y-6">
-                    <TabsList className="grid w-full grid-cols-6 bg-slate-100 dark:bg-slate-800 p-1">
+                    <TabsList className="grid w-full grid-cols-7 bg-slate-100 dark:bg-slate-800 p-1">
                         <TabsTrigger value="general">{t('settings.generalSettings')}</TabsTrigger>
                         <TabsTrigger value="appearance">{t('settings.appearance')}</TabsTrigger>
                         <TabsTrigger value="contact">{t('settings.contactInfo')}</TabsTrigger>
                         <TabsTrigger value="social">{t('settings.socialMedia')}</TabsTrigger>
                         <TabsTrigger value="support">{t('settings.supportInfo')}</TabsTrigger>
                         <TabsTrigger value="order">{t('settings.orderInfo')}</TabsTrigger>
+                        <TabsTrigger value="updates">{t('settings.appUpdates')}</TabsTrigger>
                     </TabsList>
 
                     {/* General Settings Tab */}
@@ -328,7 +354,7 @@ export default function SettingsPage() {
                                     </div>
 
                                     {/* Version */}
-                                    <div className="space-y-2">
+                                    {/* <div className="space-y-2">
                                         <Label htmlFor="version" className="text-sm font-medium">
                                             {t('settings.version')}
                                         </Label>
@@ -348,7 +374,7 @@ export default function SettingsPage() {
                                                 {formik.errors.version}
                                             </p>
                                         )}
-                                    </div>
+                                    </div> */}
 
 
                                     <div className="space-y-2">
@@ -911,6 +937,193 @@ export default function SettingsPage() {
 
 
                                 </div>
+
+
+                            </CardContent>
+                        </Card>
+                    </TabsContent>
+
+                    <TabsContent value="updates" className="space-y-6">
+                        <Card className="border-slate-200 dark:border-slate-800 shadow-sm">
+                            <CardHeader>
+                                <CardTitle className="text-xl">{t('settings.appUpdates')}</CardTitle>
+                                <CardDescription>{t('settings.appUpdatesDetails')}</CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="space-y-8">
+
+                                {/* USER APP */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold">{t('settings.userApp')}</h3>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_version">{t('settings.version')}</Label>
+                                            <Input
+                                                id="user_version"
+                                                name="user_version"
+                                                value={formik.values.version}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_min_version">{t('settings.minVersion')}</Label>
+                                            <Input
+                                                id="user_min_version"
+                                                name="user_min_version"
+                                                value={formik.values.user_min_version}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_update_title">{t('settings.updateTitle')}</Label>
+                                            <Input
+                                                id="user_update_title"
+                                                name="user_update_title"
+                                                value={formik.values.user_update_title}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_update_message">{t('settings.updateMessage')}</Label>
+                                            <Input
+                                                id="user_update_message"
+                                                name="user_update_message"
+                                                value={formik.values.user_update_message}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_android_url">{t('settings.androidStoreUrl')}</Label>
+                                            <Input
+                                                id="user_android_url"
+                                                name="user_android_url"
+                                                value={formik.values.user_android_url}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="user_ios_url">{t('settings.iosStoreUrl')}</Label>
+                                            <Input
+                                                id="user_ios_url"
+                                                name="user_ios_url"
+                                                value={formik.values.user_ios_url}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+
+                                        <div className="space-y-2 flex items-center gap-2">
+                                            <input
+                                                id="user_force_update"
+                                                name="user_force_update"
+                                                type="checkbox"
+                                                checked={formik.values.user_force_update}
+                                                onChange={(e) =>
+                                                    formik.setFieldValue("user_force_update", e.target.checked)
+                                                }
+                                            />
+
+                                            <Label htmlFor="user_force_update">
+                                                {t('settings.forceUpdate')}
+                                            </Label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                {/* VENDOR APP */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold">{t('settings.vendorApp')}</h3>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_version">{t('settings.version')}</Label>
+                                            <Input
+                                                id="vendor_version"
+                                                name="vendor_version"
+                                                value={formik.values.vendor_version}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_min_version">{t('settings.minVersion')}</Label>
+                                            <Input
+                                                id="vendor_min_version"
+                                                name="vendor_min_version"
+                                                value={formik.values.vendor_min_version}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_update_title">{t('settings.updateTitle')}</Label>
+                                            <Input
+                                                id="vendor_update_title"
+                                                name="vendor_update_title"
+                                                value={formik.values.vendor_update_title}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_update_message">{t('settings.updateMessage')}</Label>
+                                            <Input
+                                                id="vendor_update_message"
+                                                name="vendor_update_message"
+                                                value={formik.values.vendor_update_message}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_android_url">{t('settings.androidStoreUrl')}</Label>
+                                            <Input
+                                                id="vendor_android_url"
+                                                name="vendor_android_url"
+                                                value={formik.values.vendor_android_url}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="vendor_ios_url">{t('settings.iosStoreUrl')}</Label>
+                                            <Input
+                                                id="vendor_ios_url"
+                                                name="vendor_ios_url"
+                                                value={formik.values.vendor_ios_url}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+
+                                        <div className="space-y-2 flex items-center gap-2">
+                                            <input
+                                                id="vendor_force_update"
+                                                name="vendor_force_update"
+                                                type="checkbox"
+                                                checked={formik.values.vendor_force_update}
+                                                onChange={(e) =>
+                                                    formik.setFieldValue("vendor_force_update", e.target.checked)
+                                                }
+                                            />
+
+                                            <Label htmlFor="vendor_force_update">
+                                                {t('settings.forceUpdate')}
+                                            </Label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
 
 
                             </CardContent>

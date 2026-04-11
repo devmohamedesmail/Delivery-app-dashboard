@@ -30,6 +30,28 @@ export interface Setting {
 
   maintenance_mode: boolean
   maintenance_message: string | null
+
+  order_extra_ratio: string | null
+
+
+
+  // USER APP
+
+  user_min_version: string | null
+  user_force_update: boolean
+  user_update_title: string | null
+  user_update_message: string | null
+  user_android_url: string | null
+  user_ios_url: string | null
+
+  // VENDOR APP
+  vendor_version: string | null
+  vendor_min_version: string | null
+  vendor_force_update: boolean
+  vendor_update_title: string | null
+  vendor_update_message: string | null
+  vendor_android_url: string | null
+  vendor_ios_url: string | null
 }
 
 
